@@ -257,3 +257,45 @@ Perform the one of Testing types with the opening Devtools to make sure applicat
 <details>
   
 </details>
+
+# Others
+#### 1. Cases cannot be done by automation
+<details>
+
+- Unstable features
+- One time test cases
+- Adhoc cases
+- Exploratory testing
+- UI/GUI
+- Technical challenges (Capcha, ActiveMQ, Azure storage..)
+  
+</details>
+
+#### 2. How to test without document
+<details>
+
+- Apply exploratory testing to understand the existing product
+- Discuss to PO/Seniors to get business knowledge
+- Go through production bugs to identify the edge cases
+  
+</details>
+
+#### 3. How to make sure enough test cases
+<details>
+
+- Understand and analyze requirement carefully to list out test scenarios
+- Apply test types/ techniques to identify positive/negative test cases in each scenario/functionality
+- For complex flows, using traceability matrix to cover all business rules and requirement specifications
+  
+</details>
+
+#### 4. How to select the right automation tool/framework
+<details>
+
+- Verify the complexity of project requirements
+- Define the scope of automation
+  - Implement automation scripts (simple or complex)
+  - Reporting
+  - Integration to CI/CD
+  
+</details>
