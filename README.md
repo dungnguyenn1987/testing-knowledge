@@ -1,4 +1,4 @@
-# FPT INTERVIEW
+# MANUAL QUESTIONS
 #### 1. What does tester do in development phase?
 <details>
 
@@ -37,12 +37,25 @@ For shift left it is important that stakeholders are convinced and bought into t
 
 </details>
 
-#### 3. How we test locally?
+#### 3. How to test without document
 <details>
+
+- Apply exploratory testing to understand the existing product
+- Discuss to PO/Seniors to get business knowledge
+- Go through production bugs to identify the edge cases
   
 </details>
 
-#### 4. API schema
+#### 4. How to make sure enough test cases
+<details>
+
+- Understand and analyze requirement carefully to list out test scenarios
+- Apply test types/ techniques to identify positive/negative test cases in each scenario/functionality
+- For complex flows, using traceability matrix to cover all business rules and requirement specifications
+  
+</details>
+
+#### 5. API schema
 <details>
 
 An API schema defines the structure of the data exchanged between a client and an API. It acts as a blueprint or contract that outlines how the data is formatted, what fields are expected, and the relationships between different data entities.
@@ -58,38 +71,53 @@ There are several ways to define API schemas depending on the type of API, such 
 
 </details>
 
-#### 5. when it's wrong when API return 200?
+#### 6. when it's wrong when API return 200?
 <details>
   
 </details>
 
-#### 6. PO/stackholders request to add more feature in the middle of sprint, what should you do?
+#### 7. How we test locally?
+<details>
+  
+</details>
+
+#### 8. Can you create a test plan and test cases based on a given scenario?
 <details>
 
-Here’s a step-by-step guide on what you should do when this happens:
+As a QA Lead, creating a comprehensive test plan and test cases is crucial to ensure the quality of the software product. Based on the scenario provided, I would start by thoroughly understanding the requirements, user stories, and acceptance criteria to establish a solid foundation for testing. Leveraging my experience highlighted in my resume where I led the testing efforts for a major software release, resulting in a 20% reduction in post-release defects, I would then proceed to identify different test scenarios and create detailed test cases.
 
-1. Assess the Request
-  - Clarify the request: Ensure you understand the specifics of the new feature request. Is it a new priority feature, a change in scope, or a quick fix? Ask questions to get clarity.
-  - Impact on current work: Evaluate how adding the new feature will affect the ongoing sprint. Does it conflict with existing priorities? Will it require significant resources or time?
-  - Urgency: Determine the urgency of the new feature. Is it a critical feature for the sprint or is it something that can wait until the next sprint?
-2. Check Sprint Capacity and Priorities
-  - Review the sprint backlog: Look at the work your team has already committed to in the current sprint. Is the new request realistic to include without overloading the team?
-  - Check team capacity: Evaluate if the team has enough capacity to handle the new request while still completing the planned work. Adding work mid-sprint may result in delays or quality issues if the team is stretched too thin.
-  - Reprioritize if necessary: If the new feature is crucial, you may need to revisit the priorities. 
-3. Communicate with the Product Owner
-Transparent conversation: Have an open discussion with the PO or stakeholders about the impact of adding new work to the sprint. Explain the trade-offs and the consequences of changing the scope.
-If the request is important but can’t be completed in the current sprint, suggest moving it to the next sprint or creating a backlog item for future work.
+To formulate the test plan, I would prioritize features based on risk and impact analysis to focus testing efforts effectively. This approach was instrumental in a previous project where I implemented risk-based testing resulting in a 15% reduction in critical defects reported by customers post-deployment.
 
-4. Determine the Best Course of Action
-Depending on the context of the request and the impact, you have a few options to proceed:
-
-  - Defer the request: If the new feature is not urgent and doesn’t align with the sprint goal, recommend deferring it to the next sprint. This keeps the current sprint stable and avoids overloading the team.
-  - Re-prioritize the backlog: If the feature is urgent and critical, work with the PO to re-prioritize the backlog. You may need to remove lower-priority work to make room for the new feature.
-  - Re-scope the sprint: If the team has the capacity and the new feature aligns with the sprint goal, you can adjust the scope by removing or deferring lower-priority items and adding the new feature.
+Furthermore, I would incorporate both manual and automated testing strategies in the test plan to maximize test coverage and efficiency. By automating repetitive test cases covering critical functionalities, I successfully reduced the regression testing time by 30% in my previous role, resulting in quicker release cycles and improved overall product quality.
 
 </details>
 
-#### 7. How setup the full process of CI/CD
+#  AUTOMATION QUESTIONS
+
+#### 1. Cases cannot be done by automation
+<details>
+
+- Unstable features
+- One time test cases
+- Adhoc cases
+- Exploratory testing
+- UI/GUI
+- Technical challenges (Capcha, ActiveMQ, Azure storage..)
+  
+</details>
+
+#### 2. How to select the right automation tool/framework
+<details>
+
+- Verify the complexity of project requirements
+- Define the scope of automation
+  - Implement automation scripts (simple or complex)
+  - Reporting
+  - Integration to CI/CD
+  
+</details>
+
+#### 3. How setup the full process of CI/CD
 <details>
 
 Setting up Continuous Integration (CI) / Continuous Delivery (CD) for automation test scripts involves configuring a system that will automatically build, test, and deploy your code whenever changes are pushed to your version control system (e.g., Git). The goal is to integrate automation testing into the CI/CD pipeline to ensure that new code changes do not break existing functionality.
@@ -158,7 +186,7 @@ jobs:
 
 </details>
 
-#### 8. Describe your current automation framework, could it cover both UI and API
+#### 4. Describe your current automation framework, could it cover both UI and API
 <details>
 
 A typical Selenium framework architecture looks like this:
@@ -171,12 +199,7 @@ A typical Selenium framework architecture looks like this:
   
 </details>
 
-#### 9. Challenges/Difficult you faced in automation testing
-<details>
-  
-</details>
-
-#### 10. What is other pattens that applied in automation framework besides of POM?
+#### 5. What is other pattens that applied in automation framework besides of POM?
 <details>
 
 Applying OOP principles in Page Object Model (POM) results in a modular, scalable, and maintainable automation framework. 
@@ -194,22 +217,7 @@ Applying OOP principles in Page Object Model (POM) results in a modular, scalabl
   
 </details>
 
-#### 11. Explain DI Container
-<details>
-  
-</details>
-
-#### 12. Strategy to manage the large number of test cases, for business or test results
-<details>
-  
-</details>
-
-#### 13. How to solve the large number of failed tests
-<details>
-  
-</details>
-
-#### 14. Different btw BDD and TDD, and when to apply
+#### 6. Different btw BDD and TDD, and when to apply
 <details>
   
 - Test-Driven Development (TDD):
@@ -227,7 +235,85 @@ Given/When/Then format
 
 </details>
 
-#### 15. when execute performance test, how to determine the system throughput
+#### 7. Challenges/Difficult you faced in automation testing
+<details>
+  
+</details>
+
+#### 8. Explain DI Container
+<details>
+  
+</details>
+
+#### 9. Strategy to manage the large number of test cases, for business or test results
+<details>
+  
+</details>
+
+#### 10. How to solve the large number of failed tests
+<details>
+  
+</details>
+
+#### 11. How long to adapt the new programming language?
+<details>
+  
+</details>
+
+#### 12. How to make automation scripts effectively?
+<details>
+
+To achieve this, I carefully analyzed the manual testing steps involved in regression testing and identified the repetitive tasks that could be automated. I then wrote efficient test scripts using Selenium WebDriver in Java, incorporating dynamic XPath locators to navigate through the web elements. By running these automated tests on different browsers and environments, I ensured consistent quality across platforms.
+
+Furthermore, I implemented data-driven testing by parameterizing test data using Excel spreadsheets, allowing for easily scalable and maintainable test scripts. This approach not only improved the accuracy of our tests but also facilitated quick identification of defects early in the development cycle, leading to a 30% reduction in post-release bug reports. Overall, this experience has honed my skills in test automation and reinforced the importance of leveraging technology to enhance testing efficiency and effectiveness.
+  
+</details>
+
+#### 13. Can you implement a promise?
+<details>
+
+Promises is to handle asynchronous operations efficiently. To implement a promise, I typically create a new Promise object and specify the asynchronous operation inside the promise executor function. This allows me to handle the results or errors once the operation is complete. Additionally, I utilize methods like 'then' and 'catch' to handle successful outcomes and error conditions respectively.
+
+</details>
+
+#### 14. Implement a parser to detect incorrectly formatted data and correct it ?
+<details>
+
+we'll break the task into a few logical steps:
+
+1. Read the data: We'll read the data line by line.
+2. Identify formatting issues: Detect common issues like:
+  - Incorrect number of columns in rows.
+  - Quoted fields with misplaced quotes or extra commas.
+  - Missing values in columns.
+  - Values contains special characters
+3. Correct the formatting: Attempt to fix common issues like:
+  - Filling in missing values.
+  - Balancing quotes and commas in quoted fields.
+  - Normalizing row lengths to match the expected column count.
+  - Remove/replace special characters
+
+</details>
+
+
+#### 14. Code review ?
+<details>
+
+Some common areas I will address include:
+
+- Code organization: The structure of your test (e.g., how tests are grouped and arranged).
+- Use of page object model (POM): If you're not already using it, I may recommend adopting it to improve maintainability.
+- Selector strategies: Ensuring you're using reliable and efficient ways of finding elements.
+- Reusability: How reusable your code is (e.g., common actions like login or clicking links).
+- Error handling and waits: Best practices for dealing with dynamic content and ensuring tests don't break due to timing issues.
+- Test data handling: Whether the test can be easily adapted to different scenarios with minimal changes.
+- Logging and reporting: Making sure there’s adequate logging and proper assertions.
+
+</details>
+
+# PERFORMANCE QUESTIONS
+
+#### 1. when execute performance test, how to determine the system throughput
 <details>
 
 To determine system throughput during a performance test, follow these steps:
@@ -242,7 +328,35 @@ To determine system throughput during a performance test, follow these steps:
   
 </details>
 
-#### 16. PO/stackholders have an urgent milestone, they need the quick response about the quality of some features that can be deployed or not. We have UI, some API and datastorage. which testing you prefer?
+# BEHAVIOUR QUESTIONS
+
+#### 1. PO/stackholders request to add more feature in the middle of sprint, what should you do?
+<details>
+
+Here’s a step-by-step guide on what you should do when this happens:
+
+1. Assess the Request
+  - Clarify the request: Ensure you understand the specifics of the new feature request. Is it a new priority feature, a change in scope, or a quick fix? Ask questions to get clarity.
+  - Impact on current work: Evaluate how adding the new feature will affect the ongoing sprint. Does it conflict with existing priorities? Will it require significant resources or time?
+  - Urgency: Determine the urgency of the new feature. Is it a critical feature for the sprint or is it something that can wait until the next sprint?
+2. Check Sprint Capacity and Priorities
+  - Review the sprint backlog: Look at the work your team has already committed to in the current sprint. Is the new request realistic to include without overloading the team?
+  - Check team capacity: Evaluate if the team has enough capacity to handle the new request while still completing the planned work. Adding work mid-sprint may result in delays or quality issues if the team is stretched too thin.
+  - Reprioritize if necessary: If the new feature is crucial, you may need to revisit the priorities. 
+3. Communicate with the Product Owner
+Transparent conversation: Have an open discussion with the PO or stakeholders about the impact of adding new work to the sprint. Explain the trade-offs and the consequences of changing the scope.
+If the request is important but can’t be completed in the current sprint, suggest moving it to the next sprint or creating a backlog item for future work.
+
+4. Determine the Best Course of Action
+Depending on the context of the request and the impact, you have a few options to proceed:
+
+  - Defer the request: If the new feature is not urgent and doesn’t align with the sprint goal, recommend deferring it to the next sprint. This keeps the current sprint stable and avoids overloading the team.
+  - Re-prioritize the backlog: If the feature is urgent and critical, work with the PO to re-prioritize the backlog. You may need to remove lower-priority work to make room for the new feature.
+  - Re-scope the sprint: If the team has the capacity and the new feature aligns with the sprint goal, you can adjust the scope by removing or deferring lower-priority items and adding the new feature.
+
+</details>
+
+#### 2. PO/stackholders have an urgent milestone, they need the quick response about the quality of some features that can be deployed or not. We have UI, some API and datastorage. which testing you prefer?
 <details>
 
 Perform the one of Testing types with the opening Devtools to make sure application function to be smooth without any network or console errors:
@@ -253,49 +367,64 @@ Perform the one of Testing types with the opening Devtools to make sure applicat
   
 </details>
 
-#### 17. How long to adapt the new programming language?
+#### 3. Can you describe a challenging project you have worked on?
 <details>
-  
+
+During my time at my previous company, I was tasked with testing our e-commerce platform. The project was challenging because there are a lot of complex business rules. To address this issue, I spearheaded a comprehensive business analysis of the platform using workflow tools. Based on the findings, I proposed an approach for both manual and automation testing. Through diligent efforts and collaboration with the development team, we successfully delivered the product. Overall, this project not only tested my technical skills but also honed my leadership abilities in guiding a team towards a successful outcome.
+
 </details>
 
-# Others
-#### 1. Cases cannot be done by automation
+# PERSONAL QUESTIONS
+#### 1. What are the main technical skills required for this position?
 <details>
 
-- Unstable features
-- One time test cases
-- Adhoc cases
-- Exploratory testing
-- UI/GUI
-- Technical challenges (Capcha, ActiveMQ, Azure storage..)
-  
+The main technical skills required for the Test Engineer position include proficiency in test automation tools such as Selenium and JUnit, strong knowledge of programming languages like Java and Python, and experience in writing test cases and test plans. Based on my previous role, I led the implementation of Selenium automated tests, reducing the test execution time by 40% and improving test coverage by 30%. Utilizing Java, I developed a testing framework that increased the team's productivity by identifying defects early in the development cycle.
+
+Additionally, familiarity with continuous integration tools like Azure and version control systems such as Git is essential. In my previous position, I integrated automated tests into the pipeline, leading to a 50% reduction in the time taken for regression testing. By utilizing Git for version control, I established a streamlined process for tracking changes in test scripts and collaboratively working with team members, resulting in a 20% improvement in code quality. Overall, these technical skills enable me to effectively contribute to the testing process, ensuring high-quality software deliverables.
+
 </details>
 
-#### 2. How to test without document
+#### 2. Can you explain how your values align with those of our company?
 <details>
 
-- Apply exploratory testing to understand the existing product
-- Discuss to PO/Seniors to get business knowledge
-- Go through production bugs to identify the edge cases
-  
+My values align closely with company, especially when it comes to innovation and excellence. In my previous role as a Senior Software Test Engineer, I led a team in make sure quality of a software feature that improved system efficiency by 20%, resulting in a cost savings of $50,000 annually. This project exemplified my commitment to innovation, pushing boundaries to create solutions that drive impactful results.
+
+Furthermore, I prioritize collaboration and continuous learning, which are key values at compay. I regularly attended and organized knowledge-sharing sessions within my team to foster a culture of learning and growth. For instance, implementing pair programming practices increased our team's productivity by 15% within 3 months. This aligns with company's emphasis on teamwork and development.
+
+Overall, my track record of delivering innovative solutions, driving measurable results, and fostering a collaborative work environment showcases my alignment with company's values of innovation, excellence, and teamwork.
 </details>
 
-#### 3. How to make sure enough test cases
+
+#### 3. What motivates you in terms of work?
 <details>
 
-- Understand and analyze requirement carefully to list out test scenarios
-- Apply test types/ techniques to identify positive/negative test cases in each scenario/functionality
-- For complex flows, using traceability matrix to cover all business rules and requirement specifications
-  
+What motivates me in terms of work is the opportunity to solve complex problems and make a tangible impact through innovative solutions. Throughout my career as a software test engineer, I have always been driven by the challenge of creating efficient and scalable automation test scripts. For example, in my previous role, I led a project to optimize the backend code, resulting in a 30% decrease in test effort and a 20% reduction in test coverage. This not only improved the overall quality of the system but also saved the team efforts.
+
+I find great satisfaction in seeing the direct results of my efforts and knowing that I am contributing to the success of the team and the organization as a whole. As a Senior Software Test Engineer, I am excited about the opportunity to use my skills and experience to drive impactful projects, mentor junior team members, and constantly learn and grow in a dynamic environment. This sense of accomplishment and continuous learning is what fuels my passion for software engineering and motivates me to deliver high-quality work consistently.
+
 </details>
 
-#### 4. How to select the right automation tool/framework
+#### 4. Can you describe your ideal coworker?
 <details>
 
-- Verify the complexity of project requirements
-- Define the scope of automation
-  - Implement automation scripts (simple or complex)
-  - Reporting
-  - Integration to CI/CD
-  
+Here's how I'd describe my ideal coworker:
+
+- Collaborative: Someone who thrives in a team environment, openly shares ideas, and is receptive to others' input. They understand the importance of communication and working together to achieve common goals.
+- Problem-Solver: A person who is resourceful and approaches challenges with a positive attitude. Instead of getting stuck, they think critically, come up with creative solutions, and enjoy tackling tough problems.
+- Adaptable: Flexible and open to change, whether it's shifting priorities, learning new tools or technologies, or adjusting to new workflows. They embrace challenges and adapt quickly to evolving circumstances.
+- Accountable: Someone who takes ownership of their work, follows through on commitments, and takes responsibility for both successes and setbacks. They don’t shy away from admitting mistakes and work to improve.
+- Detail-Oriented: A coworker who pays attention to the finer details, ensuring that things are done correctly the first time. Whether it’s testing code, reviewing documents, or managing projects, they understand that small things matter.
+- Proactive: Rather than waiting for instructions, they anticipate what’s needed, take initiative, and drive projects forward. They don't hesitate to suggest improvements or find efficiencies in workflows.
+- Supportive: They offer help to others when needed, whether it’s providing guidance, mentoring, or simply being a good listener. They’re a team player who wants to see others succeed as well.
+- Continuous Learner: Someone who is always looking to improve and grow, whether through formal education, self-study, or learning from others. They actively seek out opportunities for professional development and stay curious.
+- Respectful and Empathetic: They value others' perspectives, show empathy in all interactions, and maintain a respectful and positive attitude, even during stressful or challenging situations.
+In short, my ideal coworker is someone who is dependable, communicative, and passionate about their work, but also someone who cares about others' growth and success as well.
+
+</details>
+
+#### 5. What was your most consequential mistake?
+<details>
+
+
+
 </details>
