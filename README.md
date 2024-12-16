@@ -448,7 +448,7 @@ by stakeholders. Test cases related to the most important requirements are execu
 
 </details>
 
-# Defect Information
+## Defect Information
 <details>
 
 - Unique identifier
@@ -506,6 +506,7 @@ standards
 
 
 ## Priority vs Severity
+<details>
 - Severity defines the degree of impact of a bug on a software application to produce detrimental results. Greater the severity, larger would be the impact on the functionalities.
 
 ![image](https://github.com/user-attachments/assets/a82b4057-cf17-4615-84df-4a1f0cd6b424)
@@ -514,10 +515,12 @@ standards
 
 ![image](https://github.com/user-attachments/assets/f0782037-d37b-4c84-bc29-fc1951db398c)
 
-
+</details>
+  
 ## How to calculate test coverage
+<details>
 Test Coverage is calculated by The number of test cases exercised divided by the total number of executable test cases, and is expressed as a percentage
-
+</details>
 
 # MANUAL QUESTIONS
 #### 1. What does tester do in development phase?
