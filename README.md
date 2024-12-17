@@ -143,6 +143,7 @@ process
 - Performing non-functional testing starting at the component test level, where possible. This is a
 form of shift left as these non-functional test types tend to be performed later in the SDLC when a
 complete system and a representative test environment are available
+
 Shift left might result in extra training, effort and/or costs earlier in the process but is expected to save
 efforts and/or costs later in the process.
 For shift left it is important that stakeholders are convinced and bought into this concept.
@@ -186,7 +187,7 @@ completeness, functional correctness and functional appropriateness.*
 system. Non-functional testing is the testing of “how well the system behaves”. The main objective of non-
 functional testing is checking the non-functional quality characteristics. The ISO/IEC 25010 standard
 provides the following classification of the non-functional quality characteristics:
-Performance efficiency
+- Performance efficiency
 - Compatibility
 - Usability (also known as interaction capability)
 - Reliability
@@ -224,7 +225,7 @@ all the mentioned test types.
 one can test the fixed version of the software in several ways, including:
 - executing all tests that previously have failed due to the defect, or, also by
 - adding new tests to cover any changes that were needed to fix the defect
-- 
+
 However, when time or money is short when fixing defects, confirmation testing might be restricted to
 simply exercising the test steps that should reproduce the failure caused by the defect and checking that
 the failure does not occur.
