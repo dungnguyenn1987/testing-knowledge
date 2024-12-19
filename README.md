@@ -523,8 +523,80 @@ standards
 Test Coverage is calculated by The number of test cases exercised divided by the total number of executable test cases, and is expressed as a percentage
 </details>
 
+## Scrum vs Kanban
+<details>
+
+**Scrum** is an Agile management framework wwith instruments and practices
+- Sprint: Scrum divides a project into iterations (called sprints) of fixed length (usually two to four
+weeks).
+- Product Increment: Each sprint results in a potentially releasable/shippable product (called an
+increment).
+- Product Backlog: The product owner manages a prioritized list of planned product items
+(called the product backlog). The product backlog evolves from sprint to sprint (called backlog
+refinement).
+- Sprint Backlog: At the start of each sprint, the Scrum team selects a set of highest priority
+items (called the sprint backlog) from the product backlog. Since the Scrum team, not the
+product owner, selects the items to be realized within the sprint, the selection is referred to as
+being on the pull principle rather than the push principle.
+- Definition of Done: To make sure that there is a potentially releasable product at each sprint’s
+end, the Scrum team discusses and defines appropriate criteria for sprint completion. The
+discussion deepens the team’s understanding of the backlog items and the product
+requirements.
+- Timeboxing: Only those tasks, requirements, or features that the team expects to finish within
+the sprint are part of the sprint backlog. If the development team cannot finish a task within a
+sprint, the associated product features are removed from the sprint and the task is moved
+back into the product backlog. Timeboxing applies not only to tasks, but in other situations
+(e.g., enforcing meeting start and end times).
+- Transparency: The development team reports and updates sprint status on a daily basis at a
+meeting called the daily scrum. This makes the content and progress of the current sprint,
+including test results, visible to the team, management, and all interested parties. For
+example, the development team can show sprint status on a whiteboard.
+
+Scrum defines three roles:
+
+- Scrum Master: ensures that Scrum practices and rules are implemented and followed, and
+resolves any violations, resource issues, or other impediments that could prevent the team
+from following the practices and rules. This person is not the team lead, but a coach.
+- Product Owner: represents the customer, and generates, maintains, and prioritizes the
+product backlog. This person is not the team lead.
+- Development Team: develop and test the product. The team is self-organized: There is no
+team lead, so the team makes the decisions. The team is also cross-functional 
+
+**Kanban**  is a management approach that is sometimes used in Agile projects. The
+general objective is to visualize and optimize the flow of work within a value-added chain. Kanban
+utilizes three instruments
+- Kanban Board: The value chain to be managed is visualized by a Kanban board. Each column
+shows a station, which is a set of related activities, e.g., development or testing. The items to
+be produced or tasks to be processed are symbolized by tickets moving from left to right
+across the board through the stations.
+- Work-in-Progress Limit: The amount of parallel active tasks is strictly limited. This is controlled
+by the maximum number of tickets allowed for a station and/or globally for the board.
+Whenever a station has free capacity, the worker pulls a ticket from the predecessor station.
+- Lead Time: Kanban is used to optimize the continuous flow of tasks by minimizing the
+(average) lead time for the complete value stream.
+
+<mark>Kanban features some similarities to Scrum. In both frameworks, visualizing the active tasks (e.g., on
+a public whiteboard) provides transparency of content and progress of tasks.</mark> Tasks not yet scheduled
+are waiting in a backlog and moved onto the Kanban board as soon as there is new space (production
+capacity) available.
+
+<mark>Iterations or sprints are optional in Kanban. The Kanban process allows releasing its deliverables item
+by item, rather than as part of a release. Timeboxing as a synchronizing mechanism, therefore, is
+optional, unlike in Scrum, which synchronizes all tasks within a sprint</mark>
+
+</details>
+
+## Bug life cycle
+<details>
+
+![image](https://github.com/user-attachments/assets/db3f1b33-5dca-4ab1-94e5-7fa6ae8cbad6)
+
+
+</details>
+
+
 # MANUAL QUESTIONS
-#### 1. What does tester do in development phase?
+## What does tester do in development phase?
 <details>
 
 - Test planning consists of defining the test objectives and then selecting an approach that best achieves the objectives within the constraints imposed by the overall context. 
@@ -535,7 +607,7 @@ Test Coverage is calculated by The number of test cases exercised divided by the
 
 </details>
 
-#### 2. Can tester start testing when funcitonality under development does not complete yet? can tester replace the other testing activity?
+## Can tester start testing when funcitonality under development does not complete yet? can tester replace the other testing activity?
 <details>
   
 Principle of early testing is sometimes referred to as shift left because it is an approach where testing is performed earlier in the SDLC. Shift left basically suggests that testing should be done earlier (e.g., not waiting for code to be implemented or for components to be integrated), but it does not mean that testing later in the SDLC should be neglected.
@@ -562,7 +634,7 @@ For shift left it is important that stakeholders are convinced and bought into t
 
 </details>
 
-#### 3. How to test without document
+## How to test without document
 <details>
 
 - Apply exploratory testing to understand the existing product
@@ -571,7 +643,7 @@ For shift left it is important that stakeholders are convinced and bought into t
   
 </details>
 
-#### 4. How to make sure enough test cases
+## How to make sure enough test cases
 <details>
 
 - Understand and analyze requirement carefully to list out test scenarios
@@ -580,7 +652,7 @@ For shift left it is important that stakeholders are convinced and bought into t
   
 </details>
 
-#### 5. API schema
+## API schema
 <details>
 
 An API schema defines the structure of the data exchanged between a client and an API. It acts as a blueprint or contract that outlines how the data is formatted, what fields are expected, and the relationships between different data entities.
@@ -596,17 +668,17 @@ There are several ways to define API schemas depending on the type of API, such 
 
 </details>
 
-#### 6. when it's wrong when API return 200?
+## when it's wrong when API return 200?
 <details>
   
 </details>
 
-#### 7. How we test locally?
+## How we test locally?
 <details>
   
 </details>
 
-#### 8. Can you create a test plan and test cases based on a given scenario?
+## Can you create a test plan and test cases based on a given scenario?
 <details>
 
 As a QA Lead, creating a comprehensive test plan and test cases is crucial to ensure the quality of the software product. Based on the scenario provided, I would start by thoroughly understanding the requirements, user stories, and acceptance criteria to establish a solid foundation for testing. Leveraging my experience highlighted in my resume where I led the testing efforts for a major software release, resulting in a 20% reduction in post-release defects, I would then proceed to identify different test scenarios and create detailed test cases.
@@ -619,7 +691,7 @@ Furthermore, I would incorporate both manual and automated testing strategies in
 
 #  AUTOMATION QUESTIONS
 
-#### 1. Cases cannot be done by automation
+## Cases cannot be done by automation
 <details>
 
 - Unstable features
@@ -631,7 +703,7 @@ Furthermore, I would incorporate both manual and automated testing strategies in
   
 </details>
 
-#### 2. How to select the right automation tool/framework
+## How to select the right automation tool/framework
 <details>
 
 - Verify the complexity of project requirements
@@ -642,7 +714,7 @@ Furthermore, I would incorporate both manual and automated testing strategies in
   
 </details>
 
-#### 3. How setup the full process of CI/CD
+## How setup the full process of CI/CD
 <details>
 
 Setting up Continuous Integration (CI) / Continuous Delivery (CD) for automation test scripts involves configuring a system that will automatically build, test, and deploy your code whenever changes are pushed to your version control system (e.g., Git). The goal is to integrate automation testing into the CI/CD pipeline to ensure that new code changes do not break existing functionality.
@@ -711,7 +783,7 @@ jobs:
 
 </details>
 
-#### 4. Describe your current automation framework, could it cover both UI and API
+### Describe your current automation framework, could it cover both UI and API
 <details>
 
 A typical Selenium framework architecture looks like this:
@@ -724,7 +796,7 @@ A typical Selenium framework architecture looks like this:
   
 </details>
 
-#### 5. What is other pattens that applied in automation framework besides of POM?
+## What is other pattens that applied in automation framework besides of POM?
 <details>
 
 Applying OOP principles in Page Object Model (POM) results in a modular, scalable, and maintainable automation framework. 
@@ -742,7 +814,7 @@ Applying OOP principles in Page Object Model (POM) results in a modular, scalabl
   
 </details>
 
-#### 6. Different btw BDD and TDD, and when to apply
+## Different btw BDD and TDD, and when to apply
 <details>
   
 - Test-Driven Development (TDD):
@@ -760,32 +832,39 @@ Given/When/Then format
 
 </details>
 
-#### 7. Challenges/Difficult you faced in automation testing
+## Challenges/Difficult you faced in automation testing
 <details>
   
 </details>
 
-#### 8. Explain DI Container
+## Explain DI Container
+<details>
+
+Dependency Injection (DI) is a design pattern used to implement Inversion of Control (IoC) by passing dependencies (objects that another object relies on) into an object rather than having the object create the dependencies itself. The primary purpose of DI is to achieve better modularity, testability, and maintainability of code. By decoupling the creation of an object’s dependencies from the object’s own logic, we can create more flexible and easily testable code.
+
+The pattern ensures that an object or function that will receive and use its dependencies by external code (an "injector"), This external source can be a DI container or a framework that manages the dependencies. DI helps solve the following problems:
+
+- How can a class be independent from the creation of the objects it depends on?
+- How can an application, and the objects it uses support different configurations? => isolation of test runs simultaneously
+  
+</details>
+
+## Strategy to manage the large number of test cases, for business or test results
 <details>
   
 </details>
 
-#### 9. Strategy to manage the large number of test cases, for business or test results
+## How to solve the large number of failed tests
 <details>
   
 </details>
 
-#### 10. How to solve the large number of failed tests
+## How long to adapt the new programming language?
 <details>
   
 </details>
 
-#### 11. How long to adapt the new programming language?
-<details>
-  
-</details>
-
-#### 12. How to make automation scripts effectively?
+## How to make automation scripts effectively?
 <details>
 
 To achieve this, I carefully analyzed the manual testing steps involved in regression testing and identified the repetitive tasks that could be automated. I then wrote efficient test scripts using Selenium WebDriver in Java, incorporating dynamic XPath locators to navigate through the web elements. By running these automated tests on different browsers and environments, I ensured consistent quality across platforms.
@@ -794,14 +873,14 @@ Furthermore, I implemented data-driven testing by parameterizing test data using
   
 </details>
 
-#### 13. Can you implement a promise?
+## Can you implement a promise?
 <details>
 
 Promises is to handle asynchronous operations efficiently. To implement a promise, I typically create a new Promise object and specify the asynchronous operation inside the promise executor function. This allows me to handle the results or errors once the operation is complete. Additionally, I utilize methods like 'then' and 'catch' to handle successful outcomes and error conditions respectively.
 
 </details>
 
-#### 14. Implement a parser to detect incorrectly formatted data and correct it ?
+## Implement a parser to detect incorrectly formatted data and correct it ?
 <details>
 
 we'll break the task into a few logical steps:
@@ -821,7 +900,7 @@ we'll break the task into a few logical steps:
 </details>
 
 
-#### 14. Code review ?
+## Code review ?
 <details>
 
 Some common areas I will address include:
@@ -836,9 +915,125 @@ Some common areas I will address include:
 
 </details>
 
+## What is data-driven testing?
+<details>
+
+Data-driven testing is a way of testing the same functionality with different sets of input data and expected results. This allows you to cover more scenarios, reduce redundancy, and improve maintainability of your test cases. Data-driven testing can also help you to identify edge cases, boundary values, and invalid inputs that might cause errors or bugs in your application.
+
+How to apply data driven in cucumber and specflow: parameterization for data values to scenario steps
+
+1. Use regular expressions and capture groups to define flexible and dynamic steps that can accept various inputs or outputs. Regular expressions are patterns that match specific strings or characters in your step text. Capture groups are parts of the regular expressions that are enclosed in parentheses and can be extracted as parameters for your step definitions. To access the data from the capture groups, you can use the arguments or parameters in step definitions.
+2. Use data tables in cucumber step to specify multiple data rows for your step, step will be repeated when have multiple data rows (e.g: add multiple address for user). You can also use data tables to define key-value pairs or lists of values for your steps. To access the data from the data tables, you can use the Table or List objects in your step definitions. Data tables from Gherkin can be accessed by using the DataTable object as the last parameter in a step definition. Depending on the table shape, it can also be accessed as one of the following collections:
+  -  List<List<String>> table
+  -  List<Map<String, String>> table
+  -  Map<String, String> table
+  -  Map<String, List<String>> table
+  -  Map<String, Map<String, String>> table
+
+![image](https://github.com/user-attachments/assets/093912d7-3daa-4d35-b78a-10d76c8399cd)
+
+3. Use scenario outlines and examples. Examples are tables that provide data in the scenario outline, each line corresponding to one data set of scenario run. To access the data from the examples, you can use the <placeholder> syntax in scenario steps (placeholder is the name of table column headers). 
+4. User external data source like json, csv, excel..., it's suitable to store large amounts of data or data that changes frequently. To access the data from the external files, you can use libraries or methods that can read and parse the file format in your step definitions.
+
+**Transformers** : expression values, data tables into arbitrary objects.
+- **Cucumber** expression parameters, data tables, and doc strings can be transformed into arbitrary Java objects.
+  - @ParameterType
+``
+public class StepDefinitions {
+
+    @ParameterType("([0-9]{4})-([0-9]{2})-([0-9]{2})")
+    public LocalDate iso8601Date(String year, String month, String day) {
+        return LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+    }
+
+    @Given("today is {iso8601Date}")
+    public void today_is(LocalDate date) {
+
+    }
+}
+``
+  - @DataTableType
+``
+public class StepDefinitions {
+
+    @DataTableType
+    public Author authorEntryTransformer(Map<String, String> entry) {
+        return new Author(
+            entry.get("firstName"),
+            entry.get("lastName"),
+            entry.get("birthDate"));
+    }
+
+    @Given("a list of authors in a table")
+    public void aListOfAuthorsInATable(List<Author> authors) {
+        
+    }
+}
+``
+- **Specflow**:
+  - Create simple class to model your specific object. Applying the attribute `TableAliases` if have properties in your objects that are known by different terms within the business domain
+``
+public class Employee
+{
+    public string FirstName { get; set; }
+    public string MiddleName { get; set; }
+
+    [TableAliases("Last[]?Name", "Family[]?Name")]
+    public string Surname { get; set; }
+}
+``
+  - Use CreateInstance<T> or CreateSet<T> convert a table in your scenario to a single/list instance of a specified class `table.CreateInstance<Person>()`
+  
+</details>
+
+## Compare data source json, csv, excel
+<details>
+  
+**CSV (Comma-Separated Values)**
+-Pros:
+  - Simplicity: storing data in a tabular format that’s easy to understand and manipulate.
+  - Wide Compatibility: Supported by many tools
+  - Lightweight: smaller file sizes, making them efficient for transferring large datasets.
+- Cons:
+  - Limited Structure: CSVs can only handle flat, two-dimensional data, making them unsuitable for complex or hierarchical datasets.
+  - No Metadata: They lack built-in support for data types, units, or schema, requiring external documentation.
+  - Error-Prone for Large Datasets: Handling large datasets in CSV can lead to issues with formatting and readability, especially when fields contain commas or line breaks.
+ 
+**JSON (JavaScript Object Notation)**
+-Pros:
+  - Flexibility: JSON supports nested and hierarchical data, making it ideal for representing complex relationships.
+  - Readability: Both human-readable and machine-readable
+  - Popularity in APIs: JSON is widely used in modern APIs and web applications, ensuring seamless integration.
+- Cons:
+  - Larger File Sizes: compared to CSV or binary formats.
+  - Parsing Overhead: Requires specialized libraries or tools for processing, which can introduce complexity.
+  
+**Excel (XLS/XLSX)**
+-Pros:
+  - User-Friendly: Designed for non-technical users, Excel files are easy to open, edit, and share.
+  - Rich Features: Built-in tools for charts, formulas, and pivot tables make data exploration straightforward. Can manage multile data to one file using sheets
+  - Widely Used: Familiarity across industries ensures compatibility with business workflows.
+- Cons:
+  - Limited Scalability: Excel struggles with very large datasets, with performance issues for files over a few hundred thousand rows.
+  - Error-Prone: Manual editing can introduce errors, especially in collaborative environments, easy to make conflict
+   
+</details>
+
+**XML/HTML**
+-Pros:
+  - Rich Metadata/Context: XML includes schema and attributes, making it highly descriptive and self-contained.
+  - Interoperability: Widely supported across industries, especially in legacy systems.
+  - Scalability: Handles complex and hierarchical data with ease.
+- Cons:
+  - Verbose Format: XML files tend to be large due to extensive tagging, leading to slower transmission and storage challenges.
+  - Complex Parsing: Processing/parsing XML/HTML requires robust tools and expertise, increasing overhead.
+   
+</details>
+
+
 # PERFORMANCE QUESTIONS
 
-#### 1. when execute performance test, how to determine the system throughput
+## when execute performance test, how to determine the system throughput
 <details>
 
 To determine system throughput during a performance test, follow these steps:
@@ -855,7 +1050,7 @@ To determine system throughput during a performance test, follow these steps:
 
 # BEHAVIOUR QUESTIONS
 
-#### 1. PO/stackholders request to add more feature in the middle of sprint, what should you do?
+## PO/stackholders request to add more feature in the middle of sprint, what should you do?
 <details>
 
 Here’s a step-by-step guide on what you should do when this happens:
@@ -881,7 +1076,7 @@ Depending on the context of the request and the impact, you have a few options t
 
 </details>
 
-#### 2. PO/stackholders have an urgent milestone, they need the quick response about the quality of some features that can be deployed or not. We have UI, some API and datastorage. which testing you prefer?
+## PO/stackholders have an urgent milestone, they need the quick response about the quality of some features that can be deployed or not. We have UI, some API and datastorage. which testing you prefer?
 <details>
 
 Perform the one of Testing types with the opening Devtools to make sure application function to be smooth without any network or console errors:
@@ -892,7 +1087,7 @@ Perform the one of Testing types with the opening Devtools to make sure applicat
   
 </details>
 
-#### 3. Can you describe a challenging project you have worked on?
+## Can you describe a challenging project you have worked on?
 <details>
 
 During my time at my previous company, I was tasked with testing our e-commerce platform. The project was challenging because there are a lot of complex business rules. To address this issue, I spearheaded a comprehensive business analysis of the platform using workflow tools. Based on the findings, I proposed an approach for both manual and automation testing. Through diligent efforts and collaboration with the development team, we successfully delivered the product. Overall, this project not only tested my technical skills but also honed my leadership abilities in guiding a team towards a successful outcome.
@@ -900,7 +1095,7 @@ During my time at my previous company, I was tasked with testing our e-commerce 
 </details>
 
 # PERSONAL QUESTIONS
-#### 1. What are the main technical skills required for this position?
+## What are the main technical skills required for this position?
 <details>
 
 The main technical skills required for the Test Engineer position include proficiency in test automation tools such as Selenium and JUnit, strong knowledge of programming languages like Java and Python, and experience in writing test cases and test plans. Based on my previous role, I led the implementation of Selenium automated tests, reducing the test execution time by 40% and improving test coverage by 30%. Utilizing Java, I developed a testing framework that increased the team's productivity by identifying defects early in the development cycle.
@@ -909,7 +1104,7 @@ Additionally, familiarity with continuous integration tools like Azure and versi
 
 </details>
 
-#### 2. Can you explain how your values align with those of our company?
+## Can you explain how your values align with those of our company?
 <details>
 
 My values align closely with company, especially when it comes to innovation and excellence. In my previous role as a Senior Software Test Engineer, I led a team in make sure quality of a software feature that improved system efficiency by 20%, resulting in a cost savings of $50,000 annually. This project exemplified my commitment to innovation, pushing boundaries to create solutions that drive impactful results.
@@ -920,7 +1115,7 @@ Overall, my track record of delivering innovative solutions, driving measurable 
 </details>
 
 
-#### 3. What motivates you in terms of work?
+## What motivates you in terms of work?
 <details>
 
 What motivates me in terms of work is the opportunity to solve complex problems and make a tangible impact through innovative solutions. Throughout my career as a software test engineer, I have always been driven by the challenge of creating efficient and scalable automation test scripts. For example, in my previous role, I led a project to optimize the backend code, resulting in a 30% decrease in test effort and a 20% reduction in test coverage. This not only improved the overall quality of the system but also saved the team efforts.
@@ -929,7 +1124,7 @@ I find great satisfaction in seeing the direct results of my efforts and knowing
 
 </details>
 
-#### 4. Can you describe your ideal coworker?
+## Can you describe your ideal coworker?
 <details>
 
 Here's how I'd describe my ideal coworker:
@@ -947,7 +1142,7 @@ In short, my ideal coworker is someone who is dependable, communicative, and pas
 
 </details>
 
-#### 5. What was your most consequential mistake?
+## What was your most consequential mistake?
 <details>
 
 
