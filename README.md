@@ -938,7 +938,9 @@ How to apply data driven in cucumber and specflow: parameterization for data val
 **Transformers** : expression values, data tables into arbitrary objects.
 - **Cucumber** expression parameters, data tables, and doc strings can be transformed into arbitrary Java objects.
   - @ParameterType
+
 ``
+
 public class StepDefinitions {
 
     @ParameterType("([0-9]{4})-([0-9]{2})-([0-9]{2})")
@@ -951,8 +953,11 @@ public class StepDefinitions {
 
     }
 }
+
 ``
+
   - @DataTableType
+
 ``
 public class StepDefinitions {
 
@@ -970,8 +975,10 @@ public class StepDefinitions {
     }
 }
 ``
+
 - **Specflow**:
   - Create simple class to model your specific object. Applying the attribute `TableAliases` if have properties in your objects that are known by different terms within the business domain
+
 ``
 public class Employee
 {
@@ -982,6 +989,7 @@ public class Employee
     public string Surname { get; set; }
 }
 ``
+
   - Use CreateInstance<T> or CreateSet<T> convert a table in your scenario to a single/list instance of a specified class `table.CreateInstance<Person>()`
   
 </details>
@@ -990,7 +998,8 @@ public class Employee
 <details>
   
 **CSV (Comma-Separated Values)**
--Pros:
+
+- Pros:
   - Simplicity: storing data in a tabular format that’s easy to understand and manipulate.
   - Wide Compatibility: Supported by many tools
   - Lightweight: smaller file sizes, making them efficient for transferring large datasets.
@@ -1000,7 +1009,8 @@ public class Employee
   - Error-Prone for Large Datasets: Handling large datasets in CSV can lead to issues with formatting and readability, especially when fields contain commas or line breaks.
  
 **JSON (JavaScript Object Notation)**
--Pros:
+
+- Pros:
   - Flexibility: JSON supports nested and hierarchical data, making it ideal for representing complex relationships.
   - Readability: Both human-readable and machine-readable
   - Popularity in APIs: JSON is widely used in modern APIs and web applications, ensuring seamless integration.
@@ -1009,7 +1019,8 @@ public class Employee
   - Parsing Overhead: Requires specialized libraries or tools for processing, which can introduce complexity.
   
 **Excel (XLS/XLSX)**
--Pros:
+
+- Pros:
   - User-Friendly: Designed for non-technical users, Excel files are easy to open, edit, and share.
   - Rich Features: Built-in tools for charts, formulas, and pivot tables make data exploration straightforward. Can manage multile data to one file using sheets
   - Widely Used: Familiarity across industries ensures compatibility with business workflows.
@@ -1017,10 +1028,9 @@ public class Employee
   - Limited Scalability: Excel struggles with very large datasets, with performance issues for files over a few hundred thousand rows.
   - Error-Prone: Manual editing can introduce errors, especially in collaborative environments, easy to make conflict
    
-</details>
-
 **XML/HTML**
--Pros:
+
+- Pros:
   - Rich Metadata/Context: XML includes schema and attributes, making it highly descriptive and self-contained.
   - Interoperability: Widely supported across industries, especially in legacy systems.
   - Scalability: Handles complex and hierarchical data with ease.
@@ -1030,6 +1040,80 @@ public class Employee
    
 </details>
 
+## Data Management in Automation
+<details>
+  
+1. Fixed data
+- Store data separatedly for maintenance perspective as data may change in future and that should not affect our code and change data one place is applied everywhere, Data file based on specific purposes:
+  - configuration in .properties
+  - API URI
+  - Enums for environments, browsers..
+
+2. Generate unique prerequisite data through automation for each automation run, wherever possible
+
+3. Test Data by environments
+Most of the projects have multiple test environments(e.g. Dev, Test, Sandbox, etc.). if there are multiple test environments, split data into two categories:
+
+- Common for all environments: Some data would be common to all environments
+- Specific to a particular environment: Data that changes from environment to environment
+
+4. Localisation
+
+</details>
+
+## Actions for Production bugs
+<details>
+  
+1. Reproduce the defect
+2. Collaborative Root-Cause Analysis
+3. Fix, Verify, and Deploy Strategically
+4. Lession learn and improvements to prevent defect
+
+Possible Reasons for Bugs in Production
+
+- Environment Differences => push the creation of a staging environment that mimics the production environment as closely as possible. Thorough testing in this environment should be performed before releasing to production.
+- Data Discrepancies => Try to use realistic and diverse datasets during testing that reflect real-world scenarios, but review with sensitive data
+- Insufficient Load Testing => Perform rigorous load and stress testing to identify performance bottlenecks on staging env.
+- Third-Party Integration Problems
+- Test Coverage Gaps (defect leakage) => review testing process (test design to get highest coverage, cross-review, exploratory test..) , add defect to automation and regression suit
+
+</details>
+
+## Test Approach in Time pressure
+<details>
+  
+- Communication about test plan and tasks and schedule. Update progress frequently
+- Smoke test e2e critical flows
+- Find support by automation testing: Identify tests that you can automate, such as regression tests or smoke tests, which ensure the most critical functions work as expected after code changes.
+- Test Prioritization on cases that not covered by automation:
+  - Risk Assessment: evaluate which parts of the software are most critical to its operation and which areas have the highest likelihood of containing defects.
+  - Focus on new features and changes that have been made since the last release. These areas are more prone to bugs than stable, unchanged parts of the software. 
+  - Also, prioritize tests that have historically uncovered defects.
+  - Exploratory/Adhoc Testing: Dive into the application with a critical eye, trying to emulate real-world user behavior and scenarios to find out uncovered/unforeseen cases.
+
+</details>
+
+## Actions when automation failed a lot of case
+<details>
+  
+- Identify the problem: check report (sceenshot, exception, logs)/debug to identify where to failed and reason
+- Reproduce the failure: Try to manually reproduce the failure or rerun automation test. 
+- Analyze causes and corresponding actions:
+  - Application bugs => raise to development team to fix
+  - Code Changes functionalities but automation haven't been updated yet => update automation scripts
+  - UI Changes => update locators
+  - Check for recent changes: See if there are any recent changes that could be causing the issue. => revert
+  - Flaky tests (timeout by inconsistent env)
+- Rerun the test: After making changes, rerun the test. 
+
+Depending on the factor that affects your test reliability, you may need to apply different strategies for fixing failed tests: 
+
+- For example, flaky tests can be fixed by isolating and eliminating the source of randomness or instability in your tests, such as using stable test data, mocking external dependencies, adding proper waits or retries, or simplifying your test logic.
+- To fix test environment issues, you should ensure that your test environment is as similar as possible to your production environment and is stable and controlled. This can be done by using containers, virtual machines, or cloud services to create and manage your test environment and by using configuration management tools to automate and document your environment setup.
+- To fix test data issues, you need to ensure that your test data is up-to-date, complete, and correct. This can be done by using data generators, data refreshers, or data sanitizers to create and maintain your test data and by using data validation tools to verify and monitor your data quality.
+- Lastly, to fix test code issues you should make sure that your code is well-written, simple, and easy to maintain. This can be done by following coding standards, best practices, and design patterns as well as by using code quality tools to check and improve code readability, performance, and security.
+
+</details>
 
 # PERFORMANCE QUESTIONS
 
