@@ -717,31 +717,24 @@ Furthermore, I would incorporate both manual and automated testing strategies in
 ## How setup the full process of CI/CD
 <details>
 
-Setting up Continuous Integration (CI) / Continuous Delivery (CD) for automation test scripts involves configuring a system that will automatically build, test, and deploy your code whenever changes are pushed to your version control system (e.g., Git). The goal is to integrate automation testing into the CI/CD pipeline to ensure that new code changes do not break existing functionality.
+![image](https://github.com/user-attachments/assets/4c9cc0f1-649c-4f1c-9af5-31cdd2401b1b)
 
-Steps to Set Up CI/CD for Automation Test Scripts
-1. Ensure that your project is stored in a Git repository (e.g., GitHub, GitLab, Bitbucket).
-Your test scripts should be in the repository so that the CI/CD pipeline can access and run them. Some of the most commonly used ones are:
+- **Continuous integration (CI)** is the practice used by development teams to simplify the testing and building of code. CI helps to catch bugs or problems early in the development cycle, which makes them easier and faster to fix. Automated tests and builds are run as part of the CI process. The process can run on a set schedule, whenever code is pushed, or both. Items known as artifacts are produced from CI systems. They're used by the continuous delivery release pipelines to drive automatic deployments.
+- **Continuous delivery (CD)** is the process of building, testing, and deploying code to one or more test or production environments (stages). Deploying and testing in multiple environments optimizes quality.
 
-  - Jenkins
-  - GitHub Actions
-  - GitLab CI
-  - CircleCI
-  - Travis CI
-  - Azure DevOps
+Key concepts overview
 
-2. Write and Organize Automation Test Scripts
+![image](https://github.com/user-attachments/assets/2423cf9c-32db-4f99-93ea-0bcbb22c024e)
 
-Ensure that your tests are automated, idempotent (can be rerun without changing the result), and independent (tests don't depend on one another).
-
-4. Set Up the CI/CD Pipeline
-You'll need to configure the pipeline (create pipeline file) to perform the following tasks:
-
-  - Clone the Repository: The CI tool needs to pull the latest version of the code from your repository.
-  - Install Dependencies: Ensure that any dependencies (e.g., npm packages, Python packages) are installed before the tests are executed.
-  - Run the Automated Tests: using command line by your test runner
-  - Generate Test Reports:Most CI tools can generate test reports in various formats (e.g., JUnit XML, HTML). This helps in viewing the results and analyzing failures.
-  - Set Up Notifications via emails or any channels
+- Prerequisites: Store your source code in a version control system that supported to setup CI/CD
+- A trigger tells when a pipeline to run.
+- A pipeline is made up of one or more stages. A pipeline can deploy to one or more environments.
+- A stage is a way of organizing jobs in a pipeline and each stage can have one or more jobs.
+- Each job runs on one agent. A job can also be agentless.
+- Each agent runs a job that contains one or more steps.
+- A step can be a task or script and is the smallest building block of a pipeline.
+- A task is a prepackaged script that performs an action, such as runing automation tests, invoking a REST API or publishing a build artifact.
+- An artifact is a collection of files or packages published by a run.
 
 Example: .github/workflows/test.yml
 ```
