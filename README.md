@@ -589,7 +589,7 @@ optional, unlike in Scrum, which synchronizes all tasks within a sprint</mark>
 ## Bug life cycle
 <details>
 
-![image](https://github.com/user-attachments/assets/db3f1b33-5dca-4ab1-94e5-7fa6ae8cbad6)
+![image](https://github.com/user-attachments/assets/e501c2cb-cdd2-4534-8252-86eac1ac1a4b)
 
 
 </details>
