@@ -1126,6 +1126,42 @@ To determine system throughput during a performance test, follow these steps:
 </details>
 
 # BEHAVIOUR QUESTIONS
+## What do you do if your Agile project suddenly undergoes a major change?
+<details><
+
+1. Assess Impact
+  - Gather your team and review the change to understand its implications fully.
+  - Consider how it affects the project scope, timelines, resources, and deliverables.
+2.  Engage Team
+  - Discuss the change with your team members, get their input, and address any concerns they may have.
+  - This collaborative approach not only ensures everyone is on the same page but also leverages the collective intelligence of the team to find the best path forward.
+3. Adjust Backlog
+  - Work with your product owner and team to reprioritize the backlog, ensuring that items align with the updated goals and requirements.
+  - This may mean adding new tasks, removing irrelevant ones, or reshuffling priorities.
+  - Agile thrives on continuous prioritization to keep the project aligned with business needs.
+4. Update Roadmap
+  - Your project roadmap, which outlines the planned path and milestones, will need an update.
+  - Collaborate with stakeholders to redefine the roadmap based on the new direction of the project.
+  - This step ensures that everyone has a clear understanding of the revised goals and timelines, which is vital for maintaining alignment and setting realistic expectations.          
+5. Monitor Progress
+  - Monitor progress closely as you implement changes.
+  - Use Agile metrics and regular check-ins, like daily stand-ups or sprint reviews, to track how the project adapts to the change.
+  - This continuous monitoring allows you to make further adjustments as needed and ensures that the project remains on track despite the sudden change.
+
+</details>
+
+## Conflict resolution
+<details>
+
+- respecting diversity and individuality, 
+- communicating openly and honestly with each other, 
+- focusing on common goals and values, 
+- seeking win-win solutions, 
+- involving all relevant stakeholders in the decision-making process, 
+- embracing change and feedback as opportunities for growth, and learning from the experience.
+           
+</details>
+
 
 ## PO/stackholders request to add more feature in the middle of sprint, what should you do?
 <details>
