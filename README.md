@@ -596,6 +596,72 @@ optional, unlike in Scrum, which synchronizes all tasks within a sprint</mark>
 
 
 # MANUAL QUESTIONS
+## Actions for Production bugs
+<details>
+  
+1. Reproduce the defect
+2. Collaborative Root-Cause Analysis
+3. Fix, Verify, and Deploy Strategically
+4. Lession learn and improvements to prevent defect
+
+Possible Reasons for Bugs in Production
+
+- Environment Differences => push the creation of a staging environment that mimics the production environment as closely as possible. Thorough testing in this environment should be performed before releasing to production.
+- Data Discrepancies => Try to use realistic and diverse datasets during testing that reflect real-world scenarios, but review with sensitive data
+- Insufficient Load Testing => Perform rigorous load and stress testing to identify performance bottlenecks on staging env.
+- Third-Party Integration Problems
+- Test Coverage Gaps (defect leakage) => review testing process (test design to get highest coverage, cross-review, exploratory test..) , add defect to automation and regression suit
+
+</details>
+
+## Test Approach in Time pressure
+<details>
+  
+- Communication about test plan and tasks and schedule. Update progress frequently
+- Smoke test e2e critical flows
+- Find support by automation testing: Identify tests that you can automate, such as regression tests or smoke tests, which ensure the most critical functions work as expected after code changes.
+- Test Prioritization on cases that not covered by automation:
+  - Risk Assessment: evaluate which parts of the software are most critical to its operation and which areas have the highest likelihood of containing defects.
+  - Focus on new features and changes that have been made since the last release. These areas are more prone to bugs than stable, unchanged parts of the software. 
+  - Also, prioritize tests that have historically uncovered defects.
+  - Exploratory/Adhoc Testing: Dive into the application with a critical eye, trying to emulate real-world user behavior and scenarios to find out uncovered/unforeseen cases.
+
+</details>
+
+## How to test without document
+<details>
+
+- Apply exploratory testing to understand the existing product
+- Discuss to PO/Seniors to get business knowledge
+- Go through production bugs to identify the edge cases
+  
+</details>
+
+## How to make sure enough test cases
+<details>
+
+- Understand and analyze requirement carefully to list out test scenarios
+- Apply test types/ techniques to identify positive/negative test cases in each scenario/functionality
+- For complex flows, using traceability matrix to cover all business rules and requirement specifications
+  
+</details>
+
+## API schema
+<details>
+
+An API schema defines the structure of the data exchanged between a client and an API. It acts as a blueprint or contract that outlines how the data is formatted, what fields are expected, and the relationships between different data entities.
+
+There are several ways to define API schemas depending on the type of API, such as REST, GraphQL, or others. Below are a few common ways to describe an API schema:
+
+- OpenAPI Specification (formerly Swagger)
+  - The OpenAPI Specification (OAS) is a widely used standard for describing RESTful APIs. It provides a comprehensive way to document API endpoints, request/response formats, authentication methods, and more.
+- GraphQL Schema
+  - For GraphQL APIs, the schema defines types, queries, mutations, and subscriptions that the API supports. It allows clients to request only the data they need, in contrast to REST APIs.
+- JSON Schema
+  - A JSON schema defines the structure of JSON data, typically used to validate and document data formats for API requests and responses.
+
+</details>
+
 ## What does tester do in development phase?
 <details>
 
@@ -634,40 +700,6 @@ For shift left it is important that stakeholders are convinced and bought into t
 
 </details>
 
-## How to test without document
-<details>
-
-- Apply exploratory testing to understand the existing product
-- Discuss to PO/Seniors to get business knowledge
-- Go through production bugs to identify the edge cases
-  
-</details>
-
-## How to make sure enough test cases
-<details>
-
-- Understand and analyze requirement carefully to list out test scenarios
-- Apply test types/ techniques to identify positive/negative test cases in each scenario/functionality
-- For complex flows, using traceability matrix to cover all business rules and requirement specifications
-  
-</details>
-
-## API schema
-<details>
-
-An API schema defines the structure of the data exchanged between a client and an API. It acts as a blueprint or contract that outlines how the data is formatted, what fields are expected, and the relationships between different data entities.
-
-There are several ways to define API schemas depending on the type of API, such as REST, GraphQL, or others. Below are a few common ways to describe an API schema:
-
-- OpenAPI Specification (formerly Swagger)
-  - The OpenAPI Specification (OAS) is a widely used standard for describing RESTful APIs. It provides a comprehensive way to document API endpoints, request/response formats, authentication methods, and more.
-- GraphQL Schema
-  - For GraphQL APIs, the schema defines types, queries, mutations, and subscriptions that the API supports. It allows clients to request only the data they need, in contrast to REST APIs.
-- JSON Schema
-  - A JSON schema defines the structure of JSON data, typically used to validate and document data formats for API requests and responses.
-
-</details>
-
 ## when it's wrong when API return 200?
 <details>
   
@@ -690,6 +722,89 @@ Furthermore, I would incorporate both manual and automated testing strategies in
 </details>
 
 #  AUTOMATION QUESTIONS
+
+## How do you handle flaky tests in your test automation framework?
+<details>
+
+1. Identify the root cause
+  - Concurrency Issues:	Tests running in parallel that interfere with each other can lead to unpredictable outcomes.
+    - Implement setup/teardown hook for reset db, delete cookie
+    - Apply Dependence Injection to avoid leak states between concurrent tests
+  - External Dependencies:	Reliance on third-party services, APIs, or databases that may not always behave consistently or are subject to network variability.
+    - Using mock as possible
+  - Timing and Synchronization Problems:	Tests that fail or pass depending on how quickly certain operations are completed, often due to inadequate wait conditions or assumptions about execution time.
+    - observe application behavior carefully to find out the way to improve wait strategy
+    - use tools or libraries that support **retry** mechanisms attempts to run only the failed steps at the time that they fail, thus avoiding the necessity to re-run whole scenarios (Java-based failsafe library, .NET-based Polly Retry library)
+  - Non-deterministic Behavior:	Using random test data or relying on system states that may change between test runs can introduce variability in test outcomes.
+  - Test Environment Instability:	Differences or changes in the test environment, such as software versions, configuration, or available resources, can cause tests to behave flakily.
+2. Retry the failed tests
+  -  Use framework capabilities to rerun flaky tests automatically when they fail, but it can increase the test execution time
+3. Prioritize the stable tests
+  - use tags, categories, or annotations to mark the stable and flaky tests and run them accordingly. prioritize the stable tests over the flaky ones and run the stable tests more frequently
+4. Monitor and report the flaky tests
+5. Refactor or remove the flaky tests
+  
+</details>
+
+## Retry Approach
+<details>
+
+**Java-based failsafe library**
+
+```
+default void retryStep(CheckedRunnable runnable, int maxRetry, int delaySeconds) {
+  RetryPolicy<Object> policy = policyBuilder.withMaxRetries(maxRetry)
+      .withDelay(Duration.ofSeconds(delaySeconds))
+      .handle(exceptionsList)
+      .onRetry(e -> log.warn(sf("attempting retry#: %d", e.getAttemptCount())))
+      .onFailure(
+          e -> log.error(sf("attempts: %d have failed", e.getExecutionCount())))
+      .build();
+  Failsafe.with(policy).run(runnable);
+}
+
+@When("User navigates to create new customer account")
+public void userNavigatesToCreateNewCustomerAccount() {
+  retryStep(() -> homePage.navigateToNewAccountPage(),
+      MAX_RETRIES_DEFAULT,
+      MAX_DELAY_SECONDS_DEFAULT);
+}
+
+```
+
+```
+default Object getWithRetryStep(CheckedSupplier<Object> supplier, int maxRetry,
+    int delaySeconds) {
+  RetryPolicy<Object> policy = policyBuilder.withMaxRetries(maxRetry)
+      .withDelay(Duration.ofSeconds(delaySeconds))
+      .handle(exceptionsList)
+      .handleResult(null)
+      .onRetry(e -> log.warn(sf("attempting retry#: %d", e.getAttemptCount())))
+      .onFailure(
+          e -> log.error(sf("attempts: %d have failed", e.getExecutionCount())))
+      .build();
+  return Failsafe.with(policy).get(supplier);
+}
+
+@Then("User creates an account and verifies the message: {string}")
+public void userCreatesAnAccountAndVerifiesTheMessage(String alertText) {
+  boolean IsAlertMessageDisplayed = (boolean) getWithRetryStep(() -> {
+        createNewAccountPage.createAnAccount();
+        return createNewAccountPage.IsAlertMessageDisplayed(alertText);
+      },
+      MAX_RETRIES_DEFAULT,
+      MAX_DELAY_SECONDS_DEFAULT
+  );
+  Assertions.assertThat(IsAlertMessageDisplayed)
+      .as("Assert that alert is displayed")
+      .isTrue();
+}
+```
+
+**.NET-based PollyRetry library**
+
+
+</details>
 
 ## Cases cannot be done by automation
 <details>
@@ -775,123 +890,6 @@ jobs:
 ```
 
 </details>
-
-### Describe your current automation framework, could it cover both UI and API
-<details>
-
-A typical Selenium framework architecture looks like this:
-
-- Test Scripts: The scripts that define the test steps using Selenium WebDriver.
-- Page Object Classes: Contains UI elements and methods that represent the web pages.
-- Utils: Helper classes for managing things like reading data files, taking screenshots, handling wait times, etc.
-- Test Data: The data required for running the tests, stored in files or databases.
-- Reports: A reporting module that generates test execution reports.
-  
-</details>
-
-## What is other pattens that applied in automation framework besides of POM?
-<details>
-
-Applying OOP principles in Page Object Model (POM) results in a modular, scalable, and maintainable automation framework. 
-
-- **Encapsulate**  is achieved by hiding the details of the web elements and providing only the necessary methods to interact with them.
-  - Private Web Elements: Web elements are made private so that they are not accessible from outside the Page Object class.
-  - Public Methods: Methods are provided to interact with these private elements. These methods are exposed to the test scripts, which can invoke them to interact with the web page.
-- **Abstract** away the complexity of page interactions from the test scripts by creating high-level methods (e.g., login, logout).
-- **Inheritance** is useful when there are common actions or utilities that can be shared between different page objects.
-  - BasePage Class: A BasePage class can be created to contain common functionality such as navigating to different pages, waiting for elements, or performing common actions (e.g., clicking buttons, checking alerts).
-  - The Page Object classes can then inherit from the BasePage class to reuse common methods.
-- **Polymorphism** allows different page objects or actions to be handled using the same interface. This can be useful when you want to extend functionality or handle different page interactions in a unified way. Method overriding:
-  - Redefine methods in the subclass
-  - Define other methods with the same name, but different parameters
-  
-</details>
-
-## Different btw BDD and TDD, and when to apply
-<details>
-  
-- Test-Driven Development (TDD):
-  - Directs the coding through test cases (instead of extensive software design) 
-  - Tests are written first, then the code is written to satisfy the tests, and then the tests and code are 
-refactored
-- Acceptance Test-Driven Development (ATDD):
-  - Derives tests from acceptance criteria as part of the system design process
-  - Tests are written before the part of the application is developed to satisfy the tests 
-- Behavior-Driven Development (BDD):
-  - Expresses the desired behavior of an application with test cases written in a simple form of 
-natural language, which is easy to understand by stakeholders – usually using the 
-Given/When/Then format
-  - Test cases should then automatically be translated into executable tests
-
-</details>
-
-## Challenges/Difficult you faced in automation testing
-<details>
-  
-</details>
-
-## Explain DI Container
-<details>
-
-Dependency Injection (DI) is a design pattern used to implement Inversion of Control (IoC) by passing dependencies (objects that another object relies on) into an object rather than having the object create the dependencies itself. The primary purpose of DI is to achieve better modularity, testability, and maintainability of code. By decoupling the creation of an object’s dependencies from the object’s own logic, we can create more flexible and easily testable code.
-
-The pattern ensures that an object or function that will receive and use its dependencies by external code (an "injector"), This external source can be a DI container or a framework that manages the dependencies. DI helps solve the following problems:
-
-- How can a class be independent from the creation of the objects it depends on?
-- How can an application, and the objects it uses support different configurations? => isolation of test runs simultaneously
-  
-</details>
-
-## Strategy to manage the large number of test cases, for business or test results
-<details>
-  
-</details>
-
-## How to solve the large number of failed tests
-<details>
-  
-</details>
-
-## How long to adapt the new programming language?
-<details>
-  
-</details>
-
-## How to make automation scripts effectively?
-<details>
-
-To achieve this, I carefully analyzed the manual testing steps involved in regression testing and identified the repetitive tasks that could be automated. I then wrote efficient test scripts using Selenium WebDriver in Java, incorporating dynamic XPath locators to navigate through the web elements. By running these automated tests on different browsers and environments, I ensured consistent quality across platforms.
-
-Furthermore, I implemented data-driven testing by parameterizing test data using Excel spreadsheets, allowing for easily scalable and maintainable test scripts. This approach not only improved the accuracy of our tests but also facilitated quick identification of defects early in the development cycle, leading to a 30% reduction in post-release bug reports. Overall, this experience has honed my skills in test automation and reinforced the importance of leveraging technology to enhance testing efficiency and effectiveness.
-  
-</details>
-
-## Can you implement a promise?
-<details>
-
-Promises is to handle asynchronous operations efficiently. To implement a promise, I typically create a new Promise object and specify the asynchronous operation inside the promise executor function. This allows me to handle the results or errors once the operation is complete. Additionally, I utilize methods like 'then' and 'catch' to handle successful outcomes and error conditions respectively.
-
-</details>
-
-## Implement a parser to detect incorrectly formatted data and correct it ?
-<details>
-
-we'll break the task into a few logical steps:
-
-1. Read the data: We'll read the data line by line.
-2. Identify formatting issues: Detect common issues like:
-  - Incorrect number of columns in rows.
-  - Quoted fields with misplaced quotes or extra commas.
-  - Missing values in columns.
-  - Values contains special characters
-3. Correct the formatting: Attempt to fix common issues like:
-  - Filling in missing values.
-  - Balancing quotes and commas in quoted fields.
-  - Normalizing row lengths to match the expected column count.
-  - Remove/replace special characters
-
-</details>
-
 
 ## Code review ?
 <details>
@@ -1054,38 +1052,6 @@ Most of the projects have multiple test environments(e.g. Dev, Test, Sandbox, et
 
 </details>
 
-## Actions for Production bugs
-<details>
-  
-1. Reproduce the defect
-2. Collaborative Root-Cause Analysis
-3. Fix, Verify, and Deploy Strategically
-4. Lession learn and improvements to prevent defect
-
-Possible Reasons for Bugs in Production
-
-- Environment Differences => push the creation of a staging environment that mimics the production environment as closely as possible. Thorough testing in this environment should be performed before releasing to production.
-- Data Discrepancies => Try to use realistic and diverse datasets during testing that reflect real-world scenarios, but review with sensitive data
-- Insufficient Load Testing => Perform rigorous load and stress testing to identify performance bottlenecks on staging env.
-- Third-Party Integration Problems
-- Test Coverage Gaps (defect leakage) => review testing process (test design to get highest coverage, cross-review, exploratory test..) , add defect to automation and regression suit
-
-</details>
-
-## Test Approach in Time pressure
-<details>
-  
-- Communication about test plan and tasks and schedule. Update progress frequently
-- Smoke test e2e critical flows
-- Find support by automation testing: Identify tests that you can automate, such as regression tests or smoke tests, which ensure the most critical functions work as expected after code changes.
-- Test Prioritization on cases that not covered by automation:
-  - Risk Assessment: evaluate which parts of the software are most critical to its operation and which areas have the highest likelihood of containing defects.
-  - Focus on new features and changes that have been made since the last release. These areas are more prone to bugs than stable, unchanged parts of the software. 
-  - Also, prioritize tests that have historically uncovered defects.
-  - Exploratory/Adhoc Testing: Dive into the application with a critical eye, trying to emulate real-world user behavior and scenarios to find out uncovered/unforeseen cases.
-
-</details>
-
 ## Actions when automation failed a lot of case
 <details>
   
@@ -1107,6 +1073,123 @@ Depending on the factor that affects your test reliability, you may need to appl
 - Lastly, to fix test code issues you should make sure that your code is well-written, simple, and easy to maintain. This can be done by following coding standards, best practices, and design patterns as well as by using code quality tools to check and improve code readability, performance, and security.
 
 </details>
+
+### Describe your current automation framework, could it cover both UI and API
+<details>
+
+A typical Selenium framework architecture looks like this:
+
+- Test Scripts: The scripts that define the test steps using Selenium WebDriver.
+- Page Object Classes: Contains UI elements and methods that represent the web pages.
+- Utils: Helper classes for managing things like reading data files, taking screenshots, handling wait times, etc.
+- Test Data: The data required for running the tests, stored in files or databases.
+- Reports: A reporting module that generates test execution reports.
+  
+</details>
+
+## What is other pattens that applied in automation framework besides of POM?
+<details>
+
+Applying OOP principles in Page Object Model (POM) results in a modular, scalable, and maintainable automation framework. 
+
+- **Encapsulate**  is achieved by hiding the details of the web elements and providing only the necessary methods to interact with them.
+  - Private Web Elements: Web elements are made private so that they are not accessible from outside the Page Object class.
+  - Public Methods: Methods are provided to interact with these private elements. These methods are exposed to the test scripts, which can invoke them to interact with the web page.
+- **Abstract** away the complexity of page interactions from the test scripts by creating high-level methods (e.g., login, logout).
+- **Inheritance** is useful when there are common actions or utilities that can be shared between different page objects.
+  - BasePage Class: A BasePage class can be created to contain common functionality such as navigating to different pages, waiting for elements, or performing common actions (e.g., clicking buttons, checking alerts).
+  - The Page Object classes can then inherit from the BasePage class to reuse common methods.
+- **Polymorphism** allows different page objects or actions to be handled using the same interface. This can be useful when you want to extend functionality or handle different page interactions in a unified way. Method overriding:
+  - Redefine methods in the subclass
+  - Define other methods with the same name, but different parameters
+  
+</details>
+
+## Different btw BDD and TDD, and when to apply
+<details>
+  
+- Test-Driven Development (TDD):
+  - Directs the coding through test cases (instead of extensive software design) 
+  - Tests are written first, then the code is written to satisfy the tests, and then the tests and code are 
+refactored
+- Acceptance Test-Driven Development (ATDD):
+  - Derives tests from acceptance criteria as part of the system design process
+  - Tests are written before the part of the application is developed to satisfy the tests 
+- Behavior-Driven Development (BDD):
+  - Expresses the desired behavior of an application with test cases written in a simple form of 
+natural language, which is easy to understand by stakeholders – usually using the 
+Given/When/Then format
+  - Test cases should then automatically be translated into executable tests
+
+</details>
+
+## Challenges/Difficult you faced in automation testing
+<details>
+  
+</details>
+
+## Explain DI Container
+<details>
+
+Dependency Injection (DI) is a design pattern used to implement Inversion of Control (IoC) by passing dependencies (objects that another object relies on) into an object rather than having the object create the dependencies itself. The primary purpose of DI is to achieve better modularity, testability, and maintainability of code. By decoupling the creation of an object’s dependencies from the object’s own logic, we can create more flexible and easily testable code.
+
+The pattern ensures that an object or function that will receive and use its dependencies by external code (an "injector"), This external source can be a DI container or a framework that manages the dependencies. DI helps solve the following problems:
+
+- How can a class be independent from the creation of the objects it depends on?
+- How can an application, and the objects it uses support different configurations? => isolation of test runs simultaneously
+  
+</details>
+
+## Strategy to manage the large number of test cases, for business or test results
+<details>
+  
+</details>
+
+## How to solve the large number of failed tests
+<details>
+  
+</details>
+
+## How long to adapt the new programming language?
+<details>
+  
+</details>
+
+## How to make automation scripts effectively?
+<details>
+
+To achieve this, I carefully analyzed the manual testing steps involved in regression testing and identified the repetitive tasks that could be automated. I then wrote efficient test scripts using Selenium WebDriver in Java, incorporating dynamic XPath locators to navigate through the web elements. By running these automated tests on different browsers and environments, I ensured consistent quality across platforms.
+
+Furthermore, I implemented data-driven testing by parameterizing test data using Excel spreadsheets, allowing for easily scalable and maintainable test scripts. This approach not only improved the accuracy of our tests but also facilitated quick identification of defects early in the development cycle, leading to a 30% reduction in post-release bug reports. Overall, this experience has honed my skills in test automation and reinforced the importance of leveraging technology to enhance testing efficiency and effectiveness.
+  
+</details>
+
+## Can you implement a promise?
+<details>
+
+Promises is to handle asynchronous operations efficiently. To implement a promise, I typically create a new Promise object and specify the asynchronous operation inside the promise executor function. This allows me to handle the results or errors once the operation is complete. Additionally, I utilize methods like 'then' and 'catch' to handle successful outcomes and error conditions respectively.
+
+</details>
+
+## Implement a parser to detect incorrectly formatted data and correct it ?
+<details>
+
+we'll break the task into a few logical steps:
+
+1. Read the data: We'll read the data line by line.
+2. Identify formatting issues: Detect common issues like:
+  - Incorrect number of columns in rows.
+  - Quoted fields with misplaced quotes or extra commas.
+  - Missing values in columns.
+  - Values contains special characters
+3. Correct the formatting: Attempt to fix common issues like:
+  - Filling in missing values.
+  - Balancing quotes and commas in quoted fields.
+  - Normalizing row lengths to match the expected column count.
+  - Remove/replace special characters
+
+</details>
+
 
 # PERFORMANCE QUESTIONS
 
