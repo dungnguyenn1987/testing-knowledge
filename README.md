@@ -584,6 +584,12 @@ capacity) available.
 by item, rather than as part of a release. Timeboxing as a synchronizing mechanism, therefore, is
 optional, unlike in Scrum, which synchronizes all tasks within a sprint</mark>
 
+**Summary**
+
+Scrum: Scrum is a framework with defined roles, events, and artifacts. It operates in time-boxed iterations called sprints, usually lasting 2-4 weeks. Scrum teams follow specific roles like Scrum Master, Product Owner, and Development Team, and have fixed ceremonies such as Sprint Planning, Daily Standups, Sprint Reviews, and Sprint Retrospectives.
+
+Kanban: Kanban is a more flexible, continuous flow system that focuses on visualizing work and optimizing the flow of tasks. It doesn’t have specific roles or time-boxed iterations. Instead, it uses a Kanban board to manage the flow of work, with an emphasis on limiting work in progress (WIP) to improve efficiency and reduce bottlenecks.
+
 </details>
 
 ## Bug life cycle
@@ -596,6 +602,109 @@ optional, unlike in Scrum, which synchronizes all tasks within a sprint</mark>
 
 
 # MANUAL QUESTIONS
+## SQL basics
+<details>
+
+```
+SELECT (DISTINCT) column_name(s), TOP number|percent column_name(s)|* ,
+        MIN(column_name) AS MinCol, MAX(column_name) AS MaxCol, COUNT(column_name), SUM(column_name), AVG(column_name)...
+FROM table_name AS table1
+(INNER|FULL OUTER|LEFT|RIGHT) JOIN table2
+ON table1.column_name = table2.column_name
+WHERE condition1
+      AND condition2
+      OR condition3
+      AND NOT condition4
+      AND column_name LIKE 'A%'
+      AND column_name NOT LIKE 'B%'
+      AND column_name BETWEEN 0 AND 100
+      AND column_name NOT BETWEEN 10 AND 60
+      AND column_name IN (value1, value2, ...)
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s) ASC|DESC;
+
+///// EXAMPLE
+SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+FROM Orders
+INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+WHERE LastName = 'Davolio' OR LastName = 'Fuller'
+GROUP BY LastName
+HAVING COUNT(Orders.OrderID) > 25;
+```
+
+```
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
+```
+ 
+```
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+```
+ 
+```
+DELETE FROM table_name WHERE condition;
+```
+  
+</details>
+
+## How to assign tasks
+<details>
+
+1 Break down to Create clear, small tasks
+2. Prioritize test items Based on Risk and Impact and consider the delivery schedule
+- Risk-based prioritization: Start with the most critical areas of the application that are most likely to break or have the most impact on the end user.
+For example, core functionalities like login, payment processing, or data security should be tested first.
+Assign high-priority tasks to experienced testers who can handle complex or high-risk areas.
+
+- Business impact: Consider the business impact when assigning tasks. Features that directly affect user experience or revenue (e.g., payment features, account management) should be prioritized and assigned to testers who understand their significance.
+
+3. Assign Tasks Based on Skill Sets
+- Leverage specialized expertise: Assign tasks according to the tester’s skill set and experience.
+
+  - Manual Testing: Assign testers who are detail-oriented and skilled at exploratory and usability testing.
+  - Automated Testing: Assign tasks for writing automation scripts to testers with experience in frameworks like Selenium, JUnit, or TestNG.
+  - Performance and Security Testing: Assign these tasks to testers with specialized knowledge in tools like JMeter, LoadRunner, or penetration testing tools.
+- Skill development: Use testing task assignments as an opportunity for team members to build on new skills. For example, if someone is interested in automation, allow them to take on some basic automation tasks with guidance.
+
+</details>
+
+## How to train new member about project technologies
+<details>
+  
+1. Setup/config environment: install tool, clone repo..
+2. Self-study: guideline/document in projects if available, basic concepts of new technologies on official site
+3. Conduct structured hands-on training
+- Key concepts: An overview of essential components (e.g., test scripts, test data, reporting, etc.).
+- Step-by-step guides: Instructions on how to write, run, and troubleshoot test scripts.
+- Advanced features: Detailed explanations of advanced functionality like integrations with CI/CD tools, data-driven testing, or test parallelization.
+- Best practices: Coding standards, organizing test suites, and handling test data.
+4. Create Practice Exercises: Design exercises that allow trainees to:
+- Write scripts from simple to complex test scenario.
+- Peer review for them raise question and give your feedback
+
+</details>
+
+## What is incident management?
+<details>
+  
+Incidents are events of any kind that disrupt or reduce the quality of service (or threaten to do so) which requires an emergency response. A business application going down is an incident. A crawling-but-not-yet-dead web server can be an incident, too. It’s running slowly and interfering with productivity. Worse yet, it poses the even-greater risk of complete failure. Incidents can vary widely in severity, ranging from an entire global web service crashing to a small number of users having intermittent errors.
+
+An incident is resolved when the affected service resumes functioning in its intended state. This includes only those tasks required to mitigate impact and restore functionality.
+
+Incident management is the process used by development and IT Operations teams to respond to an unplanned event or service interruption and restore the service to its operational state.
+
+When teams are facing an incident they need a plan that helps them:
+
+- Respond effectively so they can recover fast.
+- Communicate clearly to customers, stakeholders, service owners, and others in the organization.
+- Collaborate effectively to solve the issue faster as a team and remove barriers that prevent them from resolving the issue.
+- Continuously improve to learn from these outages and apply lessons to improve a service and refine their process for the future.
+
+</details>
+
 ## Actions for Production bugs
 <details>
   
@@ -722,6 +831,19 @@ Furthermore, I would incorporate both manual and automated testing strategies in
 </details>
 
 #  AUTOMATION QUESTIONS
+## Challenges in automation
+- Common Selenium errors (NoSuchElementException, StaleElementReferenceException, ClickElementInterceptException..)
+- Run scripts cause high resource usage (e.g., memory leaks or high CPU usage).
+  - Select the suitable concurrency tests in paralell
+  - Use the browser option (e.g: no-sandbox) when initialize webdriver
+  - Make sure to Close and quit all driver instances after each run
+- Not give same outcome in local and pipeline
+  - Network issues: The pipeline could be attempting to access remote resources (like an API or database) and fail due to network issues (timeouts, DNS problems, or security groups, IP whitelist).
+  - Unstable Environment
+- Flaky tests
+- Technical issues: captcha, 2FA with authentication, get code from restricted mailbox..
+- External dependency: using mock
+- Write Test case is not suitable for automation
 
 ## How do you handle flaky tests in your test automation framework?
 <details>
@@ -854,11 +976,12 @@ public class HomePageSteps implements RetryUtilitySteps {
 ## How to select the right automation tool/framework
 <details>
 
-- Verify the complexity of project requirements
-- Define the scope of automation
-  - Implement automation scripts (simple or complex)
-  - Reporting
-  - Integration to CI/CD
+- Analyze a System Under Test to Determine the Appropriate Test Automation Solution
+  - Gather requirements considering its scope and given capabilities. Different kinds of applications(e.g., web service, mobile, and web) need different kinds of test automation from a technical point of view.
+  - collaboration with other stakeholders (e.g. manual testers, business stakeholders, and business analysts) to identify as many risks and their mitigations as possible
+- Many test automation tools that meet these requirements that can be considered.
+  - the comparison table is to allow stakeholders to see the differences between the tools based on specific requirements such as langualge/technology, configuration, data-driven, reporting, ci/cd..
+- Pilot project for selected tool
   
 </details>
 
@@ -867,8 +990,14 @@ public class HomePageSteps implements RetryUtilitySteps {
 
 ![image](https://github.com/user-attachments/assets/4c9cc0f1-649c-4f1c-9af5-31cdd2401b1b)
 
-- **Continuous integration (CI)** is the practice used by development teams to simplify the testing and building of code. CI helps to catch bugs or problems early in the development cycle, which makes them easier and faster to fix. Automated tests and builds are run as part of the CI process. The process can run on a set schedule, whenever code is pushed, or both. Items known as artifacts are produced from CI systems. They're used by the continuous delivery release pipelines to drive automatic deployments.
-- **Continuous delivery (CD)** is the process of building, testing, and deploying code to one or more test or production environments (stages). Deploying and testing in multiple environments optimizes quality.
+Continuous Integration (CI):
+
+- CI is the practice of frequently integrating code changes into a shared repository, often multiple times a day. The goal is to detect integration issues early by automatically running tests and validating code whenever changes are made.
+Developers push their code to a central repository, where automated build and testing pipelines run, ensuring that new changes don’t break the existing codebase. The automation includes steps like code compilation, running unit tests, and other types of checks (static analysis, linting, etc.).
+
+Continuous Delivery (CD):
+
+- CD is the practice of automatically deploying code changes to production (or a staging environment) once they pass the automated tests in the CI process. It ensures that software is always in a deployable state, with the ability to release changes to end-users quickly and safely. CD involves automating not only the build and test processes but also the deployment, making it easy to release software at any time with minimal manual intervention. After CI checks pass, the code is automatically deployed to an environment (typically staging or production) where further tests and user acceptance tests (UAT) can be performed.
 
 Key concepts overview
 
@@ -936,6 +1065,17 @@ Some common areas I will address include:
 - Error handling and waits: Best practices for dealing with dynamic content and ensuring tests don't break due to timing issues.
 - Test data handling: Whether the test can be easily adapted to different scenarios with minimal changes.
 - Logging and reporting: Making sure there’s adequate logging and proper assertions.
+
+Clean code principles emphasize the following points:
+
+- Use a common naming convention for the classes, methods, and variables for meaningful names
+- Use a logical and common project structure
+- Avoid hardcoding
+- Avoid too many input parameters for methods
+- Avoid long and complex methods
+- Use logging
+- Use design patterns where they are beneficial and required
+- Focus on testability
 
 </details>
 
