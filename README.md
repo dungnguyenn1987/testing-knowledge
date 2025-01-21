@@ -653,7 +653,7 @@ DELETE FROM table_name WHERE condition;
 ## How to assign tasks
 <details>
 
-1 Break down to Create clear, small tasks
+1. Break down to clear, small tasks
 2. Prioritize test items Based on Risk and Impact and consider the delivery schedule
 - Risk-based prioritization: Start with the most critical areas of the application that are most likely to break or have the most impact on the end user.
 For example, core functionalities like login, payment processing, or data security should be tested first.
@@ -662,8 +662,9 @@ Assign high-priority tasks to experienced testers who can handle complex or high
 - Business impact: Consider the business impact when assigning tasks. Features that directly affect user experience or revenue (e.g., payment features, account management) should be prioritized and assigned to testers who understand their significance.
 
 3. Assign Tasks Based on Skill Sets
+- Based on volunteer spirit
 - Leverage specialized expertise: Assign tasks according to the tester’s skill set and experience.
-
+  - Experience on some functionalities
   - Manual Testing: Assign testers who are detail-oriented and skilled at exploratory and usability testing.
   - Automated Testing: Assign tasks for writing automation scripts to testers with experience in frameworks like Selenium, JUnit, or TestNG.
   - Performance and Security Testing: Assign these tasks to testers with specialized knowledge in tools like JMeter, LoadRunner, or penetration testing tools.
@@ -832,6 +833,8 @@ Furthermore, I would incorporate both manual and automated testing strategies in
 
 #  AUTOMATION QUESTIONS
 ## Challenges in automation
+<details>
+  
 - Common Selenium errors (NoSuchElementException, StaleElementReferenceException, ClickElementInterceptException..)
 - Run scripts cause high resource usage (e.g., memory leaks or high CPU usage).
   - Select the suitable concurrency tests in paralell
@@ -843,7 +846,10 @@ Furthermore, I would incorporate both manual and automated testing strategies in
 - Flaky tests
 - Technical issues: captcha, 2FA with authentication, get code from restricted mailbox..
 - External dependency: using mock
-- Write Test case is not suitable for automation
+- Write Test case is not suitable for automation: need to communicate with author to modify test case
+  - write test cases more details, e.g: assession in each step, check UI..
+
+</details>
 
 ## How do you handle flaky tests in your test automation framework?
 <details>
@@ -1096,14 +1102,14 @@ How to apply data driven in cucumber and specflow: parameterization for data val
 
 ![image](https://github.com/user-attachments/assets/093912d7-3daa-4d35-b78a-10d76c8399cd)
 
-3. Use scenario outlines and examples. Examples are tables that provide data in the scenario outline, each line corresponding to one data set of scenario run. To access the data from the examples, you can use the <placeholder> syntax in scenario steps (placeholder is the name of table column headers). 
+3. Use scenario outlines and examples. Examples are tables that provide data in the scenario outline, each line corresponding to one data set of scenario run. To access the data from the examples, you can use the `<placeholder>` syntax in scenario steps (placeholder is the name of table column headers). 
 4. User external data source like json, csv, excel..., it's suitable to store large amounts of data or data that changes frequently. To access the data from the external files, you can use libraries or methods that can read and parse the file format in your step definitions.
 
 **Transformers** : expression values, data tables into arbitrary objects.
 - **Cucumber** expression parameters, data tables, and doc strings can be transformed into arbitrary Java objects.
   - @ParameterType
 
-``
+```
 
 public class StepDefinitions {
 
@@ -1118,11 +1124,11 @@ public class StepDefinitions {
     }
 }
 
-``
+```
 
   - @DataTableType
 
-``
+```
 public class StepDefinitions {
 
     @DataTableType
@@ -1138,12 +1144,12 @@ public class StepDefinitions {
         
     }
 }
-``
+```
 
 - **Specflow**:
   - Create simple class to model your specific object. Applying the attribute `TableAliases` if have properties in your objects that are known by different terms within the business domain
 
-``
+```
 public class Employee
 {
     public string FirstName { get; set; }
@@ -1152,9 +1158,9 @@ public class Employee
     [TableAliases("Last[]?Name", "Family[]?Name")]
     public string Surname { get; set; }
 }
-``
+```
 
-  - Use CreateInstance<T> or CreateSet<T> convert a table in your scenario to a single/list instance of a specified class `table.CreateInstance<Person>()`
+  - Use `CreateInstance<T>` or `CreateSet<T>` convert a table in your scenario to a single/list instance of a specified class `table.CreateInstance<Person>()`
   
 </details>
 
