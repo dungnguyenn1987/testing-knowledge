@@ -752,7 +752,8 @@ Possible Reasons for Bugs in Production
 
 - Understand and analyze requirement carefully to list out test scenarios
 - Apply test types/ techniques to identify positive/negative test cases in each scenario/functionality
-- For complex flows, using traceability matrix to cover all business rules and requirement specifications
+- test cases must exercise to achieve all 100% coverage items in each technique, e.g: For complex flows, using decision table testing, the coverage items are the columns containing feasible combinations of
+conditions (all columns). to cover all business rules and requirement specifications
   
 </details>
 
@@ -772,63 +773,20 @@ There are several ways to define API schemas depending on the type of API, such 
 
 </details>
 
-## What does tester do in development phase?
+## Actions if bug is not reproducible
 <details>
 
-- Test planning consists of defining the test objectives and then selecting an approach that best achieves the objectives within the constraints imposed by the overall context. 
-- Test monitoring and test control. Test monitoring involves the ongoing checking of all test activities and the comparison of actual progress against the plan. Test control involves taking the actions necessary to meet the test objectives.
-- Test analysis includes analyzing the test basis to identify testable features. Associated test conditions are defined and prioritized, taking the related risks and risk levels into account. The test basis and the test object are also evaluated to identify defects they may contain and to assess their testability. Test analysis is often supported by the use of test techniques. Test analysis answers the question “what to test?” in terms of measurable coverage criteria. 
-- Test design includes elaborating the test conditions into test cases and other testware (e.g., test charters). This activity often involves the identification of coverage items, which serve as a guide to specify test case inputs. Test techniques can be used to support this activity. Test design also includes defining the test data requirements, designing the test environment and identifying the necessary infrastructure and tools. Test design answers the question “how to test?”.
-- Test implementation includes creating or acquiring the testware necessary for test execution (e.g., test data). Test cases can be organized into test procedures, which are often assembled into test suites. Manual and automated test scripts are created. Test procedures are prioritized and arranged within a test execution schedule for efficient test execution. The test environment is built and verified to be set up correctly.
+- Provide evidence seenshot
+- Give timestamp to check Application logs
+- Provide test data
 
-</details>
+Actions when app throws the weird errors:
 
-## Can tester start testing when funcitonality under development does not complete yet? can tester replace the other testing activity?
-<details>
+- Open Developer tools in browsers
+  - Check Console for Javascript errors
+  - Check Network for Request/Response failed
+- check Application logs if possible
   
-Principle of early testing is sometimes referred to as shift left because it is an approach where testing is performed earlier in the SDLC. Shift left basically suggests that testing should be done earlier (e.g., not waiting for code to be implemented or for components to be integrated), but it does not mean that testing later in the SDLC should be neglected.
-
-  There are some good practices that illustrate how to achieve a “shift left” in testing, which include:
-  
-  - Reviewing the specification from the perspective of testers. These review activities on 
-specifications often find potential defects, such as ambiguities, incompleteness, and 
-inconsistencies
-  - Writing test cases before the code is written and have the code run in a test harness during code 
-implementation
-  - Using CI and even better CD as it comes with fast feedback and automated component tests to 
-accompany source code when it is submitted to the code repository
-  - Completing static analysis of source code prior to dynamic testing, or as part of an automated 
-process
-  - Performing non-functional testing starting at the component test level, where possible. This is a 
-form of shift left as these non-functional test types tend to be performed later in the SDLC when a 
-complete system and a representative test environment are available
-
-Shift left might result in extra training, effort and/or costs earlier in the process but is expected to save 
-efforts and/or costs later in the process.
-
-For shift left it is important that stakeholders are convinced and bought into this concept.
-
-</details>
-
-## when it's wrong when API return 200?
-<details>
-  
-</details>
-
-## How we test locally?
-<details>
-  
-</details>
-
-## Can you create a test plan and test cases based on a given scenario?
-<details>
-
-As a QA Lead, creating a comprehensive test plan and test cases is crucial to ensure the quality of the software product. Based on the scenario provided, I would start by thoroughly understanding the requirements, user stories, and acceptance criteria to establish a solid foundation for testing. Leveraging my experience highlighted in my resume where I led the testing efforts for a major software release, resulting in a 20% reduction in post-release defects, I would then proceed to identify different test scenarios and create detailed test cases.
-
-To formulate the test plan, I would prioritize features based on risk and impact analysis to focus testing efforts effectively. This approach was instrumental in a previous project where I implemented risk-based testing resulting in a 15% reduction in critical defects reported by customers post-deployment.
-
-Furthermore, I would incorporate both manual and automated testing strategies in the test plan to maximize test coverage and efficiency. By automating repetitive test cases covering critical functionalities, I successfully reduced the regression testing time by 30% in my previous role, resulting in quicker release cycles and improved overall product quality.
-
 </details>
 
 #  AUTOMATION QUESTIONS
@@ -1253,101 +1211,9 @@ Depending on the factor that affects your test reliability, you may need to appl
 
 </details>
 
-### Describe your current automation framework, could it cover both UI and API
-<details>
-
-A typical Selenium framework architecture looks like this:
-
-- Test Scripts: The scripts that define the test steps using Selenium WebDriver.
-- Page Object Classes: Contains UI elements and methods that represent the web pages.
-- Utils: Helper classes for managing things like reading data files, taking screenshots, handling wait times, etc.
-- Test Data: The data required for running the tests, stored in files or databases.
-- Reports: A reporting module that generates test execution reports.
-  
-</details>
-
-## What is other pattens that applied in automation framework besides of POM?
-<details>
-
-Applying OOP principles in Page Object Model (POM) results in a modular, scalable, and maintainable automation framework. 
-
-- **Encapsulate**  is achieved by hiding the details of the web elements and providing only the necessary methods to interact with them.
-  - Private Web Elements: Web elements are made private so that they are not accessible from outside the Page Object class.
-  - Public Methods: Methods are provided to interact with these private elements. These methods are exposed to the test scripts, which can invoke them to interact with the web page.
-- **Abstract** away the complexity of page interactions from the test scripts by creating high-level methods (e.g., login, logout).
-- **Inheritance** is useful when there are common actions or utilities that can be shared between different page objects.
-  - BasePage Class: A BasePage class can be created to contain common functionality such as navigating to different pages, waiting for elements, or performing common actions (e.g., clicking buttons, checking alerts).
-  - The Page Object classes can then inherit from the BasePage class to reuse common methods.
-- **Polymorphism** allows different page objects or actions to be handled using the same interface. This can be useful when you want to extend functionality or handle different page interactions in a unified way. Method overriding:
-  - Redefine methods in the subclass
-  - Define other methods with the same name, but different parameters
-  
-</details>
-
-## Different btw BDD and TDD, and when to apply
-<details>
-  
-- Test-Driven Development (TDD):
-  - Directs the coding through test cases (instead of extensive software design) 
-  - Tests are written first, then the code is written to satisfy the tests, and then the tests and code are 
-refactored
-- Acceptance Test-Driven Development (ATDD):
-  - Derives tests from acceptance criteria as part of the system design process
-  - Tests are written before the part of the application is developed to satisfy the tests 
-- Behavior-Driven Development (BDD):
-  - Expresses the desired behavior of an application with test cases written in a simple form of 
-natural language, which is easy to understand by stakeholders – usually using the 
-Given/When/Then format
-  - Test cases should then automatically be translated into executable tests
-
-</details>
-
-## Challenges/Difficult you faced in automation testing
-<details>
-  
-</details>
-
-## Explain DI Container
-<details>
-
-Dependency Injection (DI) is a design pattern used to implement Inversion of Control (IoC) by passing dependencies (objects that another object relies on) into an object rather than having the object create the dependencies itself. The primary purpose of DI is to achieve better modularity, testability, and maintainability of code. By decoupling the creation of an object’s dependencies from the object’s own logic, we can create more flexible and easily testable code.
-
-The pattern ensures that an object or function that will receive and use its dependencies by external code (an "injector"), This external source can be a DI container or a framework that manages the dependencies. DI helps solve the following problems:
-
-- How can a class be independent from the creation of the objects it depends on?
-- How can an application, and the objects it uses support different configurations? => isolation of test runs simultaneously
-  
-</details>
-
 ## Strategy to manage the large number of test cases, for business or test results
 <details>
   
-</details>
-
-## How to solve the large number of failed tests
-<details>
-  
-</details>
-
-## How long to adapt the new programming language?
-<details>
-  
-</details>
-
-## How to make automation scripts effectively?
-<details>
-
-To achieve this, I carefully analyzed the manual testing steps involved in regression testing and identified the repetitive tasks that could be automated. I then wrote efficient test scripts using Selenium WebDriver in Java, incorporating dynamic XPath locators to navigate through the web elements. By running these automated tests on different browsers and environments, I ensured consistent quality across platforms.
-
-Furthermore, I implemented data-driven testing by parameterizing test data using Excel spreadsheets, allowing for easily scalable and maintainable test scripts. This approach not only improved the accuracy of our tests but also facilitated quick identification of defects early in the development cycle, leading to a 30% reduction in post-release bug reports. Overall, this experience has honed my skills in test automation and reinforced the importance of leveraging technology to enhance testing efficiency and effectiveness.
-  
-</details>
-
-## Can you implement a promise?
-<details>
-
-Promises is to handle asynchronous operations efficiently. To implement a promise, I typically create a new Promise object and specify the asynchronous operation inside the promise executor function. This allows me to handle the results or errors once the operation is complete. Additionally, I utilize methods like 'then' and 'catch' to handle successful outcomes and error conditions respectively.
-
 </details>
 
 ## Implement a parser to detect incorrectly formatted data and correct it ?
@@ -1388,29 +1254,6 @@ To determine system throughput during a performance test, follow these steps:
 </details>
 
 # BEHAVIOUR QUESTIONS
-## What do you do if your Agile project suddenly undergoes a major change?
-<details><
-
-1. Assess Impact
-  - Gather your team and review the change to understand its implications fully.
-  - Consider how it affects the project scope, timelines, resources, and deliverables.
-2.  Engage Team
-  - Discuss the change with your team members, get their input, and address any concerns they may have.
-  - This collaborative approach not only ensures everyone is on the same page but also leverages the collective intelligence of the team to find the best path forward.
-3. Adjust Backlog
-  - Work with your product owner and team to reprioritize the backlog, ensuring that items align with the updated goals and requirements.
-  - This may mean adding new tasks, removing irrelevant ones, or reshuffling priorities.
-  - Agile thrives on continuous prioritization to keep the project aligned with business needs.
-4. Update Roadmap
-  - Your project roadmap, which outlines the planned path and milestones, will need an update.
-  - Collaborate with stakeholders to redefine the roadmap based on the new direction of the project.
-  - This step ensures that everyone has a clear understanding of the revised goals and timelines, which is vital for maintaining alignment and setting realistic expectations.          
-5. Monitor Progress
-  - Monitor progress closely as you implement changes.
-  - Use Agile metrics and regular check-ins, like daily stand-ups or sprint reviews, to track how the project adapts to the change.
-  - This continuous monitoring allows you to make further adjustments as needed and ensures that the project remains on track despite the sudden change.
-
-</details>
 
 ## Conflict resolution
 <details>
@@ -1425,7 +1268,7 @@ To determine system throughput during a performance test, follow these steps:
 </details>
 
 
-## PO/stackholders request to add more feature in the middle of sprint, what should you do?
+## Actions when adding new feature in the middle of sprint
 <details>
 
 Here’s a step-by-step guide on what you should do when this happens:
@@ -1449,6 +1292,13 @@ Depending on the context of the request and the impact, you have a few options t
   - Re-prioritize the backlog: If the feature is urgent and critical, work with the PO to re-prioritize the backlog. You may need to remove lower-priority work to make room for the new feature.
   - Re-scope the sprint: If the team has the capacity and the new feature aligns with the sprint goal, you can adjust the scope by removing or deferring lower-priority items and adding the new feature.
 
+**ACTIONS**
+
+- Analyze and review the risks, deliverable items, testing timeline to development team
+- Find out test approach and prioritize test efforts accoordingly. Like untilize automation for existing features and create test data, move automation efforts to manual test
+- if changes cannot meet release date, open discussion to deal the release date
+- if release is must, discuss the opportunity of increasing QA resources or possibility of partial product delivery
+
 </details>
 
 ## PO/stackholders have an urgent milestone, they need the quick response about the quality of some features that can be deployed or not. We have UI, some API and datastorage. which testing you prefer?
@@ -1460,13 +1310,6 @@ Perform the one of Testing types with the opening Devtools to make sure applicat
 - Exploratory Testing: Allocate time for exploratory testing, where testers use their knowledge and creativity to identify high-impact issues, especially in areas that may not be fully automated.
 - Boundary Value Testing: Focus on testing the boundaries (limits) of inputs, especially where validation is involved, as this is where many bugs often occur.
   
-</details>
-
-## Can you describe a challenging project you have worked on?
-<details>
-
-During my time at my previous company, I was tasked with testing our e-commerce platform. The project was challenging because there are a lot of complex business rules. To address this issue, I spearheaded a comprehensive business analysis of the platform using workflow tools. Based on the findings, I proposed an approach for both manual and automation testing. Through diligent efforts and collaboration with the development team, we successfully delivered the product. Overall, this project not only tested my technical skills but also honed my leadership abilities in guiding a team towards a successful outcome.
-
 </details>
 
 # PERSONAL QUESTIONS
