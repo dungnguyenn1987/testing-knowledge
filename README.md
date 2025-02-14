@@ -790,6 +790,13 @@ Actions when app throws the weird errors:
 </details>
 
 #  AUTOMATION QUESTIONS
+## Design your tests for parallelization
+<details>
+  
+Make your tests independent, atomic, and stateless. Independent tests do not depend on each other or on external factors, such as data, order, or environment. Atomic tests focus on one functionality or scenario, and do not have multiple steps or assertions. Stateless tests do not share or modify any global or static variables, and do not rely on any previous or subsequent tests. These characteristics make your tests more reliable, maintainable, and scalable when running in parallel.
+
+</details>
+
 ## Challenges in automation
 <details>
   
