@@ -953,8 +953,35 @@ public class HomePageSteps implements RetryUtilitySteps {
 - Many test automation tools that meet these requirements that can be considered.
   - the comparison table is to allow stakeholders to see the differences between the tools based on specific requirements such as langualge/technology, configuration, data-driven, reporting, ci/cd..
 - Pilot project for selected tool
-  
-</details>
+
+
+1. Technical Info: 
+  - Technologies ussed to develop application
+  - Kinds of platforms: window, linux, macOS, android, ios
+  - Kinds of application: web, desktop (win32, wpf, .net, java), mobile (wweb, native, hybrid), API, database
+  - have existing fw?
+  - source control
+2. Automation Ability: able to run auto in the system
+  - Go through main workflow of application
+  - How often is the application updated? (stable enough)
+  - Complicated controls: canvas, captcha, pdf, image
+  - Challenges: missing info of API/DB for prepare/cleanup data
+3. Test quantity: number of test cases/ browsers/ devices/ environments, test types, test levels
+4. Test management: test process, testcase/defect/test result management, pipeline
+5. Application Deployment: how/how often deploy application, testing env, tool for CICD
+6. Automation coverage: number of automation test case/ number of manual test case, smoke/regression/e2e test
+7. Tool selection / Table comparision
+  - Support platform/app/language/testing approaches
+  - usability, maintainability
+  - Test runner
+  - Cost/community
+8. POC: demo/implement complicated test cases
+
+**Automation quality**
+
+- Coverage
+- Script quality
+- stability (number of flaky tests)*
 
 ## How setup the full process of CI/CD
 <details>
