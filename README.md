@@ -983,6 +983,8 @@ public class HomePageSteps implements RetryUtilitySteps {
 - Script quality
 - stability (number of flaky tests)*
 
+</details>
+
 ## How setup the full process of CI/CD
 <details>
 
